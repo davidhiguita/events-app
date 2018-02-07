@@ -3,16 +3,23 @@ import React, { Component } from 'react'
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
 import { withStyles } from 'material-ui/styles'
-import starWars from 'images/starWars.png'
 import Grid from 'material-ui/Grid'
 
 require('./loginForm.scss')
 
 const styles = theme => ({
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
+    // marginLeft: theme.spacing.unit,
+    // marginRight: theme.spacing.unit,
+    width: 480
+
+  },
+  button: {
+    'background-color': '#00E170',
+    'font-size': 10,
+    'color': '#fff',
+    'width': 169,
+    'height': 37
   }
 })
 
@@ -20,7 +27,7 @@ class LoginForm extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      user: '',
+      email: '',
       password: ''
     }
   }
@@ -46,14 +53,20 @@ class LoginForm extends Component {
         </Grid>
         <Grid item md={9} className='login-form__right-column'>
           <form>
+
+            <div>
+              <div>Sign in to Eventio.</div>
+              <div>Enter your details below.</div>
+            </div>
+
             <div>
               <TextField
-                id='user'
-                label='User'
+                id='email'
+                label='Email'
                 className={classes.textField}
-                defaultValue='User'
-                value={this.state.user}
-                onChange={(event) => { this.handleChange('user', event) }}
+                defaultValue='Email'
+                value={this.state.email}
+                onChange={(event) => { this.handleChange('email', event) }}
                 margin='normal'
               />
             </div>
@@ -68,9 +81,11 @@ class LoginForm extends Component {
                 margin='normal'
               />
             </div>
-            <div className='submit-btn'>
-              <Button variant='raised' color='primary'>Hello World</Button>
+
+            <div className='login-form__right-column-submit-btn'>
+              <Button variant='raised' className={classes.button}>SIGN IN</Button>
             </div>
+
           </form>
         </Grid>
       </Grid>
