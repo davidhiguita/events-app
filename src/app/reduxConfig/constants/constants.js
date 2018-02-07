@@ -1,6 +1,6 @@
 /* Users constants */
-const FETCH_USERS_REQUEST = 'FETCH_USERS_REQUEST'
-
-export {
-  FETCH_USERS_REQUEST
+module.exports = {
+  'LOGIN_REQUEST': 'LOGIN_REQUEST',
+  'LOGIN_SUCCESS': 'LOGIN_SUCCESS',
+  'LOGIN_FAILURE': 'LOGIN_FAILURE'
 }
