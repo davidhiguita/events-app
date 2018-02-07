@@ -1,0 +1,40 @@
+$imgPath:'../../../../assets/images/starWars.png';
+$white: #fff;
+$green: #00C766;
+
+.login-form {
+
+  &__left-column{
+    background-image: url($imgPath);
+  }
+
+  &__left-column-bg-gray{
+    width: 100%;
+    min-height: 782px;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+  }
+
+  &__left-column-text{
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 22px;
+    &--green{
+      color:$green;
+    }
+  }
+
+  &__right-column{
+    display: flex;
+    justify-content: center;
+  }
+
+  .submit-btn {
+    margin: 20px 0 0 8px;
+  }
+
+}
+

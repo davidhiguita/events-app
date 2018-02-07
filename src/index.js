@@ -9,8 +9,7 @@ import { Provider } from 'react-redux'
 import createHistory from 'history/createHashHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 // main app component
-import Home from 'components/Home/Home.jsx'
-import About from 'components/About/About.jsx'
+import Login from 'components/Login/Login.jsx'
 
 // import reducers
 import usersReducer from 'reduxConfig/reducers/users'
@@ -39,8 +38,7 @@ const MyApp = () => {
       <ConnectedRouter history={history}>
         <Router>
           <div>
-            <Route exact path='/' component={Home} />
-            <Route path='/about' component={About} />
+            <Route exact path='/' component={Login} />
           </div>
         </Router>
       </ConnectedRouter>

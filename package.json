@@ -1,5 +1,5 @@
 {
-	"name": "webpack-2.0-from-scratch",
+	"name": "srv-test-project",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -11,7 +11,7 @@
 		"production": "NODE_ENV=production webpack"
 	},
 	"keywords": [],
-	"author": "",
+	"author": "eagm.08@gmail.com",
 	"license": "ISC",
 	"devDependencies": {
 		"babel-core": "^6.26.0",
@@ -35,11 +35,12 @@
 	"dependencies": {
 		"express": "^4.16.2",
 		"history": "^4.7.2",
+		"material-ui": "^1.0.0-beta.32",
+		"react": "^16.2.0",
+		"react-dom": "^16.2.0",
 		"react-redux": "^5.0.6",
 		"react-router-dom": "^4.2.2",
 		"react-router-redux": "^5.0.0-alpha.9",
-		"redux": "^3.7.2",
-		"react": "^16.2.0",
-		"react-dom": "^16.2.0"
+		"redux": "^3.7.2"
 	}
 }
