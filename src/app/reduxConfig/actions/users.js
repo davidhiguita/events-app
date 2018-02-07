@@ -1,13 +1,58 @@
-import { FETCH_USERS_REQUEST } from '../constants/constants'
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
+} from '../constants/constants'
 
-const fetchUsers = () => {
+import {serverUrl, token} from '../../../../env'
+
+const loginRequest = () => {
   return {
-    type: FETCH_USERS_REQUEST
+    type: LOGIN_REQUEST
+  }
+}
+
+const loginSuccess = () => ({
+  type: LOGIN_SUCCESS
+})
+
+const loginFailure = () => ({
+  type: LOGIN_FAILURE
+})
+
+const login = (userCredentials) => {
+  console.log('userCredentials', userCredentials)
+  return (dispatch, getState) => {
+    // indicate that we are going to lunch the login request
+    dispatch(loginRequest())
+    // launch the login request
+    return fetch(`${serverUrl}/auth`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': token
+      },
+      body: JSON.stringify({
+        'email': userCredentials.email,
+        'password': userCredentials.password
+      })
+    })
+      // receive and parse the data
+      .then((resp) => {
+        return resp.json()
+      })
+      .then((resp) => {
+        // process the response
+        dispatch(loginSuccess(resp))
+      })
+      .catch((err) => {
+        dispatch(loginFailure(err))
+      })
   }
 }
 
 const userActions = {
-  fetchUsers
+  login
 }
 
 export default userActions
