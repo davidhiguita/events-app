@@ -8,7 +8,7 @@ class Login extends Component {
   render () {
     return (
       <div className='container'>
-        <LoginForm />
+        <LoginForm props={this.props} />
       </div>
     )
   }
@@ -21,6 +21,6 @@ export default connect(
   }),
   // map actions
   {
-    fetchUsers: userActions.fetchUsers
+    login: userActions.login
   }
 )(Login)
