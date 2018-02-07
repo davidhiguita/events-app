@@ -9,10 +9,7 @@ require('./loginForm.scss')
 
 const styles = theme => ({
   textField: {
-    // marginLeft: theme.spacing.unit,
-    // marginRight: theme.spacing.unit,
     width: 480
-
   },
   button: {
     'background-color': '#00E170',
@@ -30,15 +27,20 @@ class LoginForm extends Component {
       email: '',
       password: ''
     }
+    this.onClickSubmitBtn = this.onClickSubmitBtn.bind(this)
   }
 
   handleChange (inputName, event) {
-    console.log('event ', event.target.value)
     this.setState({[inputName]: event.target.value})
   }
 
+  onClickSubmitBtn () {
+    const { props: {login} } = this.props
+    login({'email': this.state.email, 'password': this.state.password})
+  }
+
   render () {
-    const {classes} = this.props
+    const { classes } = this.props
 
     return (
       <Grid container className='login-form' spacing={24}>
@@ -83,7 +85,7 @@ class LoginForm extends Component {
             </div>
 
             <div className='login-form__right-column-submit-btn'>
-              <Button variant='raised' className={classes.button}>SIGN IN</Button>
+              <Button variant='raised' className={classes.button} onClick={this.onClickSubmitBtn}>SIGN IN</Button>
             </div>
 
           </form>
