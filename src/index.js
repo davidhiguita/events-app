@@ -10,6 +10,8 @@ import createHistory from 'history/createHashHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 // main app component
 import Login from 'components/Login/Login.jsx'
+import SignUp from 'components/SignUp/SignUp.jsx'
+import thunkMiddleware from 'redux-thunk'
 
 // import reducers
 import usersReducer from 'reduxConfig/reducers/users'
@@ -28,7 +30,10 @@ const store = createStore(
   mainReducer,
   undefined,
   compose(
-    applyMiddleware(routerMiddleware(history)),
+    applyMiddleware(
+      routerMiddleware(history),
+      thunkMiddleware
+    ),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
@@ -39,6 +44,7 @@ const MyApp = () => {
         <Router>
           <div>
             <Route exact path='/' component={Login} />
+            <Route exact path='/signUp' component={SignUp} />
           </div>
         </Router>
       </ConnectedRouter>

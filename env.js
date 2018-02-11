@@ -1,4 +1,4 @@
 module.exports = {
-  'serverUrl': 'http://45.56.118.22:4000',
-  'token': 'tokenHere'
+  'serverUrl': 'https://testproject-api-v2.strv.com',
+  'token': 'WCF9fWiNPH3Gt7abAjFJJB3XVGkjG19ZsN55flwDM3oI'
 }

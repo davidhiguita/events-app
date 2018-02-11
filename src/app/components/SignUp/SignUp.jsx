@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 // redux stuff
 import { connect } from 'react-redux'
-import loginActions from 'reduxConfig/actions/login'
-import LoginForm from './LoginForm/LoginForm'
+import signUpActions from 'reduxConfig/actions/signUp'
+import SignUpForm from './SignUpForm/SignUpForm'
 
 class Login extends Component {
   render () {
     return (
       <div className='container'>
-        <LoginForm props={this.props} />
+        <SignUpForm {...this.props} />
       </div>
     )
   }
@@ -21,6 +21,7 @@ export default connect(
   }),
   // map actions
   {
-    login: loginActions.login
+    signUp: signUpActions.signUp,
+    signUpFailure: signUpActions.signUpFailure
   }
 )(Login)

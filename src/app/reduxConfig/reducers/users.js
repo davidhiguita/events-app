@@ -1,21 +1,35 @@
 import {
   LOGIN_REQUEST,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE
+
 } from '../constants/constants'
 
 const initialState = {
   isFecthing: false,
-  error: '',
+  error: false,
+  errorMessage: '',
   users: [],
-  success: false
+  success: false,
+  successMessage: ''
 }
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
-      return Object.assign({}, state, {isFecthing: true, error: ''})
+    case SIGNUP_REQUEST:
+      return Object.assign({}, state, {isFecthing: true, error: false, success: false, successMessage: false})
+
     case LOGIN_SUCCESS:
-      return Object.assign({}, state, {isFecthing: false, success: true})
+    case SIGNUP_SUCCESS:
+      return Object.assign({}, state, {isFecthing: false, success: true, successMessage: action.payload})
+
+    case LOGIN_FAILURE:
+    case SIGNUP_FAILURE:
+      return Object.assign({}, state, {isFecthing: false, error: true, errorMessage: action.payload})
 
     default:
       return state

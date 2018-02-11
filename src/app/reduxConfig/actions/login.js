@@ -5,6 +5,7 @@ import {
 } from '../constants/constants'
 
 import {serverUrl, token} from '../../../../env'
+import 'whatwg-fetch'
 
 const loginRequest = () => {
   return {
@@ -16,21 +17,23 @@ const loginSuccess = () => ({
   type: LOGIN_SUCCESS
 })
 
-const loginFailure = () => ({
-  type: LOGIN_FAILURE
+const loginFailure = err => ({
+  type: LOGIN_FAILURE,
+  payload: err
 })
 
-const login = (userCredentials) => {
-  console.log('userCredentials', userCredentials)
+const login = userCredentials => {
+  const fetch = window.fetch
+
   return (dispatch, getState) => {
     // indicate that we are going to lunch the login request
     dispatch(loginRequest())
     // launch the login request
-    return fetch(`${serverUrl}/auth`, {
+    return fetch(`${serverUrl}/auth/native`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'token': token
+        'APIKey': token
       },
       body: JSON.stringify({
         'email': userCredentials.email,
@@ -39,20 +42,29 @@ const login = (userCredentials) => {
     })
       // receive and parse the data
       .then((resp) => {
-        return resp.json()
+        if (resp.status && resp.status !== 200) throw resp.json()
+        else return resp.json()
       })
       .then((resp) => {
         // process the response
         dispatch(loginSuccess(resp))
       })
-      .catch((err) => {
-        dispatch(loginFailure(err))
+      .catch((resp) => {
+        resp.then(result => {
+          let errMessage
+          if (result.error === 'User.InvalidPassword') {
+            errMessage = 'Oops! That email and password combination is not valid.'
+          } else {
+            errMessage = 'Something were wrong :('
+          }
+          dispatch(loginFailure(errMessage))
+        })
       })
   }
 }
 
-const userActions = {
+const loginActions = {
   login
 }
 
-export default userActions
+export default loginActions

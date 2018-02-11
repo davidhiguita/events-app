@@ -1,16 +1,14 @@
-$imgPath:'../../../../assets/images/starWars.png';
-$white: #fff;
-$green: #00C766;
+
+$imgPath:'../../assets/images/starWars.png';
 
 .login-form {
-
   &__left-column{
-    background-image: url($imgPath);
+    background-image: url($imgPath)
   }
 
   &__left-column-bg-gray{
     width: 100%;
-    min-height: 782px;
+    min-height: 777px;
     color: $white;
     display: flex;
     align-items: center;
@@ -30,14 +28,32 @@ $green: #00C766;
   &__right-column{
     display: flex;
     justify-content: center;
-    form{
-      margin-top: 200px;
+    &>div{
+      width: 100%;
     }
+  }
+
+  &__right-column-fill-in-text{
+    padding-top: 10px;
+    &--red{
+      padding-top: 10px;
+      color: $red;
+    }
+  }
+
+  &__right-column-signup-text{
+    text-align: right;
+  }
+
+  &__right-column-form-fields{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%
   }
 
   &__right-column-submit-btn {
     margin: 20px 0;
   }
-
 }
 
