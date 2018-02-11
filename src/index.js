@@ -16,12 +16,14 @@ import thunkMiddleware from 'redux-thunk'
 
 // import reducers
 import usersReducer from 'reduxConfig/reducers/users'
+import eventsReducer from 'reduxConfig/reducers/events'
 
 // import general styles
 require('./assets/stylesheets/styles.scss')
 
 const mainReducer = combineReducers({
   users: usersReducer,
+  events: eventsReducer,
   routing: routerReducer
 })
 

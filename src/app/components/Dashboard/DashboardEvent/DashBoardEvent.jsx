@@ -13,14 +13,14 @@ const styles = {
 }
 
 const DashboardEvent = props => {
-  const {classes} = props
+  const {classes, eventInfo} = props
   return (
     <div className='dashboard-event'>
-      <div className='dashboard-event__time'>April 4, 2017 - 2:17 PM</div>
-      <div className='dashboard-event__title'>How to get angry</div>
-      <div className='dashboard-event__sub-title'>Tom Watts</div>
+      <div className='dashboard-event__time'>{ eventInfo.startsAt ? eventInfo.startsAt : ''}</div>
+      <div className='dashboard-event__title'>{ eventInfo.title ? eventInfo.title : ''}</div>
+      <div className='dashboard-event__sub-title'>{eventInfo.owner ? `${eventInfo.owner.firstName} ${eventInfo.owner.lastName} ` : ''}</div>
       <div className='dashboard-event__content'>
-        I will show you how to get angry in a second
+        {eventInfo.description ? eventInfo.description : '' }
       </div>
       <div className='dashboard-event__footer'>
         <div className='dashboard-event__footer-counter'>9 of 31</div>

@@ -12,7 +12,6 @@ const initialState = {
   isFecthing: false,
   error: false,
   errorMessage: '',
-  users: [],
   success: false,
   successMessage: ''
 }

@@ -1,14 +1,33 @@
 import React, { Component } from 'react'
 // redux stuff
 import { connect } from 'react-redux'
-import dashboardActions from 'reduxConfig/actions/login'
+import dashboardActions from 'reduxConfig/actions/dashboard'
 // material ui
 import Grid from 'material-ui/Grid'
 // components
 import DashboardEvent from 'components/Dashboard/DashboardEvent/DashboardEvent'
 
 class Dashboard extends Component {
+  constructor (props) {
+    super(props)
+    this.buildEvents = this.buildEvents.bind(this)
+  }
+  componentDidMount () {
+    this.props.fetchEvents()
+  }
+
+  buildEvents () {
+    const {events: {eventList}} = this.props
+    console.log('events ', eventList)
+    if ( eventList.length) {
+      return eventList.map(event => <DashboardEvent eventInfo={event} />)
+    } else {
+      return []
+    }
+  }
+
   render () {
+    const events = this.buildEvents()
     return (
       <Grid container className='dashboard' spacing={24}>
         <Grid item md={12} sm={12} xs={12}>
@@ -26,11 +45,7 @@ class Dashboard extends Component {
               </div>
             </div>
             <div className='dashboard__events'>
-              <DashboardEvent />
-              <DashboardEvent />
-              <DashboardEvent />
-              <DashboardEvent />
-              <DashboardEvent />
+              {events}
             </div>
           </div>
         </Grid>
@@ -42,7 +57,7 @@ class Dashboard extends Component {
 export default connect(
   // map props
   state => ({
-    users: state.users
+    events: state.events
   }),
   // map actions
   {

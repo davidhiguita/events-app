@@ -31,13 +31,15 @@
     margin: 0;
     display: flex;
     list-style-type: none;
+    margin: 20px 10px;
     li{
-      margin:0 10px;
+      margin-right: 10px;
     }
   }
 
   &__menu-icons{
     display: flex;
+    margin: 20px 0;
   }
 
 
