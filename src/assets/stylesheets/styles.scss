@@ -1,15 +1,7 @@
 @import 'colors';
+@import 'general';
 @import 'Login/loginForm';
 @import 'SignUp/signUpForm';
-@import url('https://fonts.googleapis.com/css?family=Merriweather');
-
-
-$font-size : 5rem;
-$merriweather: "Merriweather",sans-serif;
-
-body{
-	font-family: $merriweather;
-}
-
-
+@import 'Dashboard/dashboard';
+@import 'Dashboard/dashboardEvent';
 

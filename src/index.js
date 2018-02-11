@@ -11,6 +11,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-r
 // main app component
 import Login from 'components/Login/Login.jsx'
 import SignUp from 'components/SignUp/SignUp.jsx'
+import Dashboard from 'components/Dashboard/Dashboard.jsx'
 import thunkMiddleware from 'redux-thunk'
 
 // import reducers
@@ -45,6 +46,7 @@ const MyApp = () => {
           <div>
             <Route exact path='/' component={Login} />
             <Route exact path='/signUp' component={SignUp} />
+            <Route exact path='/dashboard' component={Dashboard} />
           </div>
         </Router>
       </ConnectedRouter>
