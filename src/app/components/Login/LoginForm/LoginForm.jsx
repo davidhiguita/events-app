@@ -50,12 +50,12 @@ class LoginForm extends Component {
   }
 
   onClickSubmitBtn () {
-    const { props: { login } } = this.props
+    const { login } = this.props
     login({ 'email': this.state.email, 'password': this.state.password })
   }
 
   buildFillingText () {
-    const { props: { users: { error, errorMessage } } } = this.props
+    const { users: { error, errorMessage } } = this.props
     let componentToRender
     if (!error) {
       componentToRender = <div className='login-form__right-column-fill-in-text'>Enter your details below</div>
@@ -66,7 +66,7 @@ class LoginForm extends Component {
   }
 
   render () {
-    const { classes, props: { users: {error} } } = this.props
+    const { classes, users: {error} } = this.props
     const fillInText = this.buildFillingText()
 
     return (
@@ -106,7 +106,7 @@ class LoginForm extends Component {
                   />
                 </div>
                 <div>
-                  <FormControl className={classes.formControl}>
+                  <FormControl className={classes.formControl} error={error} margin='normal'>
                     <InputLabel htmlFor='password'>Password</InputLabel>
                     <Input
                       className={classes.textField}
