@@ -29,14 +29,18 @@ class DashboardEventDetail extends Component {
   }
 
   render () {
-    const eventDetailComp = this.buildEventDetail()
+    const { events: {eventList: eventDetail} } = this.props
+    // const eventDetailComp = this.buildEventDetail()
     console.log('props in event detail', this.props)
     return (
       <Grid container className='dashboard-event-detail' spacing={24}>
         <Grid item md={12} sm={12} xs={12}>
           <div className='dashboard-event-detail__container'>
+            <div className='dashboard-event-detail__event-number'>
+              Detail Event: # { eventDetail ? eventDetail['_id'] : '' }
+            </div>
             <div className='dashboard-event-detail__columns'>
-              {eventDetailComp}
+              <DashboardEvent eventInfo={eventDetail} />
               <div className='dashboard-event-detail__attendees'>
                 right column here
               </div>
