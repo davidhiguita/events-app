@@ -106,12 +106,10 @@ class LoginForm extends Component {
             </div>
             <div className='login-form__right-column-form-fields'>
               <form>
-
                 <div>
                   <div>Sign in to Eventio.</div>
                   {fillInText}
                 </div>
-
                 <div>
                   <TextField
                     error={error}
@@ -146,11 +144,9 @@ class LoginForm extends Component {
                     />
                   </FormControl>
                 </div>
-
                 <div className='login-form__right-column-submit-btn'>
                   <Button variant='raised' className={classes.button} onClick={this.onClickSubmitBtn}>SIGN IN</Button>
                 </div>
-
               </form>
             </div>
           </div>
