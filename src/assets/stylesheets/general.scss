@@ -3,7 +3,11 @@
 $font-size : 5rem;
 $merriweather: "Merriweather",sans-serif;
 
-body{
+body {
   font-family: $merriweather;
 }
 
+a {
+  text-decoration: none;
+  color: $black;
+}
