@@ -18,9 +18,16 @@ class Dashboard extends Component {
 
   buildEvents () {
     const {events: {eventList}} = this.props
-    console.log('events ', eventList)
-    if ( eventList.length) {
-      return eventList.map(event => <DashboardEvent eventInfo={event} />)
+    if (eventList.length) {
+      return eventList.map((event, index) => {
+        return (
+          <DashboardEvent
+            history={this.props.history}
+            key={index} eventInfo={event}
+            redirect
+            />
+        )
+      })
     } else {
       return []
     }

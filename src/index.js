@@ -9,9 +9,11 @@ import { Provider } from 'react-redux'
 import createHistory from 'history/createHashHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 // main app component
-import Login from 'components/Login/Login.jsx'
-import SignUp from 'components/SignUp/SignUp.jsx'
-import Dashboard from 'components/Dashboard/Dashboard.jsx'
+import Login from 'components/Login/Login'
+import SignUp from 'components/SignUp/SignUp'
+import Dashboard from 'components/Dashboard/Dashboard'
+import DashboardEventDetail from 'components/Dashboard/DashboardEventDetail/DashboardEventDetail'
+
 import thunkMiddleware from 'redux-thunk'
 
 // import reducers
@@ -49,6 +51,7 @@ const MyApp = () => {
             <Route exact path='/' component={Login} />
             <Route exact path='/signUp' component={SignUp} />
             <Route exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/event-detail/:id' component={DashboardEventDetail} />
           </div>
         </Router>
       </ConnectedRouter>

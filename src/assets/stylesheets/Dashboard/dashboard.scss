@@ -50,6 +50,12 @@
     and (-webkit-min-device-pixel-ratio: 1) {
     &__events {
       flex-wrap: wrap;
+      .dashboard-event {
+        margin: 10px;
+        width: 330px;
+        padding: 30px;
+        cursor: pointer;
+      }
     }
   }
 
@@ -76,6 +82,9 @@
         flex-direction: column;
       }
       .dashboard-event {
+        max-width: 390px;
+        padding: 30px;
+        height: 236px;
         margin: 20px 0 0 0;
       }
     }

@@ -23,14 +23,15 @@ const fetchEventsFailure = err => ({
   payload: err
 })
 
-const fetchEvents = userCredentials => {
+const fetchEvents = eventId => {
   const fetch = window.fetch
+  const urlToFetch = eventId ? `${serverUrl}/events/${eventId}` : `${serverUrl}/events`
 
   return (dispatch, getState) => {
     // indicate that we are going to lunch the login request
     dispatch(fetchEventsRequest())
     // launch the login request
-    return fetch(`${serverUrl}/events`, {
+    return fetch(urlToFetch, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

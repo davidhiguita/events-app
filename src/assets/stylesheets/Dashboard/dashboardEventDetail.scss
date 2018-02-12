@@ -1,0 +1,24 @@
+.dashboard-event-detail {
+  background-color: $light-gray;
+
+  &__container{
+    min-height: 765px;
+    width: calc(100% - 190px);
+    margin: 0 auto;
+  }
+
+  &__columns {
+    display: flex
+  }
+
+  .dashboard-event{
+    flex-basis: 60%;
+    margin: 0 20px 0 0;
+  }
+
+  &__attendees {
+    flex-basis: 40%;
+    background-color: $white;
+  }
+
+}
