@@ -1,4 +1,6 @@
+/*React stuff*/
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 /* Material ui stuff */
 import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
@@ -15,22 +17,35 @@ const styles = {
 class DashboardEvent extends Component {
   constructor (props) {
     super(props)
-    this.redirectToDetail = this.redirectToDetail.bind(this)
+    this.state = {
+      redirect: false
+    }
+    this.redirectToEventDetail = this.redirectToEventDetail.bind(this)
+    this.buildContent = this.buildContent.bind(this)
   }
 
-  redirectToDetail () {
-    const {redirect, history, eventInfo} = this.props
-    if (redirect && history) {
-      history.push(`/event-detail/${eventInfo.id}`)
+  redirectToEventDetail () {
+    const {redirect} = this.props
+    if (redirect) {
+      this.setState({ redirect: true })
     }
   }
 
-  render () {
-    const {classes, eventInfo} = this.props
-
+  buildContent () {
+    const {eventInfo, classes} = this.props
+    if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: `/event-detail/${eventInfo.id}`,
+            state: { from: this.props.location }
+          }}
+        />
+      )
+    }
     return (
       <div className='dashboard-event'>
-        <div className='dashboard-event__content' onClick={this.redirectToDetail}>
+        <div className='dashboard-event__content' onClick={this.redirectToEventDetail}>
           <div className='dashboard-event__time'>{ eventInfo && eventInfo.startsAt ? eventInfo.startsAt : ''}</div>
           <div className='dashboard-event__title'>{ eventInfo && eventInfo.title ? eventInfo.title : ''}</div>
           <div className='dashboard-event__sub-title'>{ eventInfo && eventInfo.owner ? `${eventInfo.owner.firstName} ${eventInfo.owner.lastName} ` : ''}</div>
@@ -46,6 +61,11 @@ class DashboardEvent extends Component {
         </div>
       </div>
     )
+  }
+
+  render () {
+    const content = this.buildContent()
+    return content
   }
 }
 
