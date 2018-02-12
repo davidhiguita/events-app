@@ -13,8 +13,9 @@ const loginRequest = () => {
   }
 }
 
-const loginSuccess = () => ({
-  type: LOGIN_SUCCESS
+const loginSuccess = userInfo => ({
+  type: LOGIN_SUCCESS,
+  payload: userInfo
 })
 
 const loginFailure = err => ({

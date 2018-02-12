@@ -1,4 +1,6 @@
+// react stuff
 import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
 // material ui components
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
@@ -34,7 +36,8 @@ class LoginForm extends Component {
     }
     this.onClickSubmitBtn = this.onClickSubmitBtn.bind(this)
     this.buildFillingText = this.buildFillingText.bind(this)
-    this.handleClickShowPasssword = this.handleClickShowPasssword.bind(this);
+    this.handleClickShowPasssword = this.handleClickShowPasssword.bind(this)
+    this.buildPageContent = this.buildPageContent.bind(this)
   }
 
   handleClickShowPasssword () {
@@ -65,10 +68,26 @@ class LoginForm extends Component {
     return componentToRender
   }
 
-  render () {
-    const { classes, users: {error} } = this.props
+  setSessionInLocalStorage (user) {
+    const userInfoAsString = JSON.stringify(user)
+    window.localStorage.setItem('eventioSession', userInfoAsString)
+  }
+
+  buildPageContent () {
+    const { classes, users: {error, success, userInfo} } = this.props
     const fillInText = this.buildFillingText()
 
+    if (success) {
+      this.setSessionInLocalStorage(userInfo)
+      return (
+        <Redirect
+          to={{
+            pathname: `/dashboard`,
+            state: {from: this.props.history.location}
+          }}
+        />
+      )
+    }
     return (
       <Grid container className='login-form' spacing={24}>
         <Grid item md={3} sm={1} className='login-form__left-column'>
@@ -138,6 +157,10 @@ class LoginForm extends Component {
         </Grid>
       </Grid>
     )
+  }
+
+  render () {
+    return this.buildPageContent()
   }
 }
 // bind component to the store
