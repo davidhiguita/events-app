@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import dashboardActions from 'reduxConfig/actions/dashboard'
 // material ui
 import Grid from 'material-ui/Grid'
-
+import { Link } from 'react-router-dom'
 // components
 import DashboardEvent from 'components/Dashboard/DashboardEvent/DashboardEvent'
 import ProfileIcon from 'components/ProfileIcon/ProfileIcon'
@@ -44,7 +44,9 @@ class DashboardEventDetail extends Component {
         <Grid item md={12} sm={12} xs={12}>
           <div className='dashboard-event-detail__container'>
             <div className='dashboard-event-detail__top-bar'>
-              <div className='dashboard-event-detail__top-bar-title'> Back to events</div>
+              <div className='dashboard-event-detail__top-bar-title'>
+                <Link to='/dashboard'>Back to events </Link>
+              </div>
               <ProfileIcon />
             </div>
             <div className='dashboard-event-detail__event-number'>
