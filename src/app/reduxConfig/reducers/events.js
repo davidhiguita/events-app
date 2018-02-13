@@ -1,8 +1,8 @@
 import {
-  FETCH_EVENTS_REQUEST,
-  FETCH_EVENTS_SUCCESS,
-  FETCH_EVENTS_FAILURE
-
+  EVENT_REQUEST,
+  EVENT_SUCCESS,
+  EVENT_FAILURE,
+  TOKEN_EXPIRED
 } from '../constants/constants'
 
 const initialState = {
@@ -10,24 +10,39 @@ const initialState = {
   error: false,
   errorMessage: '',
   eventList: [],
-  success: false
+  success: false,
+  successMessage: '',
+  tokenExpired: false
 }
 
 const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_EVENTS_REQUEST:
+    case EVENT_REQUEST:
       return Object.assign({}, state, {
-        isFecthing: true, error: false, success: false, eventList: []
+        isFecthing: true,
+        error: false,
+        success: false,
+        eventList: [],
+        errorMessage: '',
+        tokenExpired: false
       })
 
-    case FETCH_EVENTS_SUCCESS:
+    case EVENT_SUCCESS:
       return Object.assign({}, state, {
-        isFecthing: false, success: true, eventList: action.payload
+        isFecthing: false,
+        success: true,
+        eventList: action.payload.response,
+        successMessage: action.payload.message
       })
 
-    case FETCH_EVENTS_FAILURE:
+    case EVENT_FAILURE:
       return Object.assign({}, state, {
-        isFecthing: false, error: true
+        isFecthing: false, error: true, errorMessage: action.payload
+      })
+
+    case TOKEN_EXPIRED:
+      return Object.assign({}, state, {
+        tokenExpired: true
       })
 
     default:

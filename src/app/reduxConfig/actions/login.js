@@ -68,7 +68,8 @@ const login = userCredentials => {
 }
 
 const loginActions = {
-  login
+  login,
+  loginFailure
 }
 
 export default loginActions

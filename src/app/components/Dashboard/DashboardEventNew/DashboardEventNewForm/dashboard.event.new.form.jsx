@@ -44,8 +44,16 @@ class DashboardEventNewForm extends Component {
 
   onClickCreateEventBtn () {
     const { createEvent, eventFailure } = this.props
-    if (utils.fieldsAreValid) {
-      const newObject = Object.assign({}, this.state, {'startsAt': this.state.time})
+    const fieldsValidation = utils.fieldsAreValid(this.state, {capacity: 'int'})
+    if (fieldsValidation['valid']) {
+      let currentDate = new Date()
+      currentDate.setDate(currentDate.getDate() + 1)
+      const newObject = {
+        'startsAt': currentDate,
+        'capacity': parseInt(this.state.capacity),
+        'title': this.state.title,
+        'description': this.state.description
+      }
       createEvent(newObject)
     } else {
       eventFailure('All fields with * are required')

@@ -91,8 +91,7 @@ const createEvent = eventInfo => {
       })
         // receive and parse the data
         .then((resp) => {
-          console.log('event create response', resp)
-          if (resp.status && resp.status !== 200) throw resp.json()
+          if (resp.status && (resp.status === 200 || resp.status === 201)) return resp.json()
           else return resp
         })
         .then((resp) => {
