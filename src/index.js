@@ -10,10 +10,10 @@ import {createBrowserHistory} from 'history'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 // main app component
 import Login from 'components/Login/Login'
-import SignUp from 'components/SignUp/SignUp'
-import Dashboard from 'components/Dashboard/Dashboard'
-import DashboardEventDetail from 'components/Dashboard/DashboardEventDetail/DashboardEventDetail'
-import DashboardEventNew from 'components/Dashboard/DashboardEventNew/DashboardEventNew'
+import SignUp from 'components/SignUp/signup'
+import Dashboard from 'components/Dashboard/dashboard'
+import DashboardEventDetail from 'components/Dashboard/DashboardEventDetail/dashboard.event.detail'
+import DashboardEventNew from 'components/Dashboard/DashboardEventNew/dashboard.event.new'
 
 import thunkMiddleware from 'redux-thunk'
 

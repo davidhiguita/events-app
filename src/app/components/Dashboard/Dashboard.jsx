@@ -8,7 +8,7 @@ import dashboardActions from 'reduxConfig/actions/dashboard'
 import Grid from 'material-ui/Grid'
 // components
 import DashboardEvent from 'components/Dashboard/DashboardEvent/dashboard.event'
-import AddEventIcon from 'components/AddEventIcon/AddEventIcon'
+import AddEventIcon from 'components/AddEventIcon/add.event.icon'
 
 class Dashboard extends Component {
   constructor (props) {

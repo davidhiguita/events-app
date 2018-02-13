@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // redux stuff
 import { connect } from 'react-redux'
 import signUpActions from 'reduxConfig/actions/signUp'
-import SignUpForm from './SignUpForm/SignUpForm'
+import SignUpForm from 'components/SignUp/SignUpForm/signup.form'
 
 class Login extends Component {
   render () {

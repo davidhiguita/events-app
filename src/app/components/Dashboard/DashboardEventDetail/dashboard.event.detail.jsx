@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 // components
 import DashboardEvent from 'components/Dashboard/DashboardEvent/dashboard.event'
 import ProfileIcon from 'components/ProfileIcon/ProfileIcon'
-import AttendeeCircle from 'components/Dashboard/DashboardEventDetail/AttendeeCircle/AttendeeCircle'
+import AttendeeCircle from 'components/Dashboard/DashboardEventDetail/AttendeeCircle/attendee.circle'
 
 class DashboardEventDetail extends Component {
   constructor (props) {

@@ -6,7 +6,7 @@ import dashboardActions from 'reduxConfig/actions/dashboard'
 // material ui stuff
 import Grid from 'material-ui/Grid'
 // components
-import DashboardEventNewForm from 'components/Dashboard/DashboardEventNew/DashboardEventNewForm/DashboardEventNewForm'
+import DashboardEventNewForm from 'components/Dashboard/DashboardEventNew/DashboardEventNewForm/dashboard.event.new.form'
 
 class DashboardEventNew extends Component {
   render () {
