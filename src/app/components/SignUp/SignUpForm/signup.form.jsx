@@ -6,6 +6,8 @@ import Grid from 'material-ui/Grid'
 import { Link } from 'react-router-dom'
 import { FormControl } from 'material-ui/Form'
 import Input, { InputLabel } from 'material-ui/Input'
+// util functions
+import utils from 'utils/utils'
 
 const styles = theme => ({
   button: {
@@ -33,7 +35,6 @@ class SignUpForm extends Component {
       password: ''
     }
     this.onClickSignUpBtn = this.onClickSignUpBtn.bind(this)
-    this.fieldsAreValid = this.fieldsAreValid.bind(this)
   }
 
   handleInputChange (inputName, event) {
@@ -42,8 +43,8 @@ class SignUpForm extends Component {
 
   onClickSignUpBtn () {
     const { signUp, signUpFailure } = this.props
-
-    if (this.fieldsAreValid()) {
+    const fieldsValidation = utils.fieldsAreValid(this.state)
+    if (fieldsValidation['valid']) {
       // dispatch this action to sign up a new user
       signUp({
         firstName: this.state.firstName,
@@ -55,17 +56,6 @@ class SignUpForm extends Component {
       // dispatch this action to show up a validation message in the ui
       signUpFailure('All fields with * are required')
     }
-  }
-
-  fieldsAreValid () {
-    let valid = true
-    for (let field in this.state) {
-      if (this.state[field] === '') {
-        valid = false
-        break
-      }
-    }
-    return valid
   }
 
   buildFillingText () {
