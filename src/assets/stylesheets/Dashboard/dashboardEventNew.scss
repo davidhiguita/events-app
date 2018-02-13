@@ -1,0 +1,31 @@
+.dasboard-event-new {
+  background-color: $light-gray;
+
+  &__container {
+    min-height: 721px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__form {
+    min-width: 400px;
+    background-color: $white;
+    padding: 30px;
+    box-shadow:11px 13px 15px -14px rgba(0,0,0,0.27);
+  }
+
+  &__form-title {
+    text-align: center;
+    span {
+      color: $gray-text;
+    }
+  }
+
+  &__submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+  }
+}

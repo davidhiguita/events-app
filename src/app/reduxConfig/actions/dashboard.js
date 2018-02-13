@@ -4,6 +4,8 @@ import {
   FETCH_EVENTS_FAILURE
 } from '../constants/constants'
 
+import utils from '../../utils/utils'
+
 import {serverUrl, token} from '../../../../env'
 import 'whatwg-fetch'
 
@@ -54,8 +56,48 @@ const fetchEvents = eventId => {
   }
 }
 
+const createEvent = (eventInfo) => {
+  console.log('eventInfo ', eventInfo)
+  const fetch = window.fetch
+  // info from local storage
+  const profileInfo = utils.getProfileInfo()
+  // check if we have auth token
+  if (profileInfo && profileInfo.authToken) {
+    // launch the the request with the auth token
+    return (dispatch, getState) => {
+      // indicate that we are going to lunch the login request
+      dispatch(fetchEventsRequest())
+      // launch the login request
+      return fetch(`${serverUrl}/events`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'APIKey': token,
+          'Authorization': profileInfo.authToken
+        },
+        body: JSON.stringify(eventInfo)
+      })
+        // receive and parse the data
+        .then((resp) => {
+          console.log('event create response', resp)
+          if (resp.status && resp.status !== 200) throw resp.json()
+          else return resp.json()
+        })
+        .then((resp) => {
+          // process the response
+          dispatch(fetchEventsSuccess(resp))
+        })
+        .catch((err) => {
+          // @todo implement
+          dispatch(fetchEventsFailure(err))
+        })
+    }
+  }
+}
+
 const dashboardActions = {
-  fetchEvents
+  fetchEvents,
+  createEvent
 }
 
 export default dashboardActions
