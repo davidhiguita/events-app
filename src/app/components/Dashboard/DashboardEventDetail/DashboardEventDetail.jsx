@@ -6,7 +6,7 @@ import dashboardActions from 'reduxConfig/actions/dashboard'
 import Grid from 'material-ui/Grid'
 import { Link } from 'react-router-dom'
 // components
-import DashboardEvent from 'components/Dashboard/DashboardEvent/DashboardEvent'
+import DashboardEvent from 'components/Dashboard/DashboardEvent/dashboard.event'
 import ProfileIcon from 'components/ProfileIcon/ProfileIcon'
 import AttendeeCircle from 'components/Dashboard/DashboardEventDetail/AttendeeCircle/AttendeeCircle'
 
