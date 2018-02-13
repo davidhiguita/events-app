@@ -1,4 +1,6 @@
+// react stuff
 import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
 // redux stuff
 import { connect } from 'react-redux'
 import dashboardActions from 'reduxConfig/actions/dashboard'
@@ -11,10 +13,19 @@ import AddEventIcon from 'components/AddEventIcon/AddEventIcon'
 class Dashboard extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      goToCreateEventPage: false
+    }
     this.buildEvents = this.buildEvents.bind(this)
+    this.onClickAddEventIcon = this.onClickAddEventIcon.bind(this)
   }
+
   componentDidMount () {
     this.props.fetchEvents()
+  }
+
+  onClickAddEventIcon () {
+    this.setState({goToCreateEventPage: true})
   }
 
   buildEvents () {
@@ -34,7 +45,12 @@ class Dashboard extends Component {
     }
   }
 
-  render () {
+  buildDashboardContent () {
+    // check if we need to go to create new event page
+    if (this.state.goToCreateEventPage) {
+      return <Redirect to={{pathname: `/event-new`}} />
+    }
+    // otherwise build the events view
     const events = this.buildEvents()
     return (
       <Grid container className='dashboard' spacing={24}>
@@ -56,12 +72,16 @@ class Dashboard extends Component {
               {events}
             </div>
             <div className='dashboard__events-footer'>
-              <AddEventIcon />
+              <AddEventIcon onClickIcon={this.onClickAddEventIcon} />
             </div>
           </div>
         </Grid>
       </Grid>
     )
+  }
+
+  render () {
+    return this.buildDashboardContent()
   }
 }
 // bind component to the store

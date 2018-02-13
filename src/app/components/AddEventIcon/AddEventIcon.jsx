@@ -1,9 +1,9 @@
 import React from 'react'
 
 const AddEventIcon = props => {
-  const {onClick} = props
+  const {onClickIcon} = props
   return (
-    <div className='add-event-icon' onClick={onClick}>
+    <div className='add-event-icon' onClick={onClickIcon}>
       <div>+</div>
     </div>
   )
