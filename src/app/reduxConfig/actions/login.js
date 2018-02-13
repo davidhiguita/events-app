@@ -36,10 +36,7 @@ const login = userCredentials => {
         'Content-Type': 'application/json',
         'APIKey': token
       },
-      body: JSON.stringify({
-        'email': userCredentials.email,
-        'password': userCredentials.password
-      })
+      body: JSON.stringify(userCredentials)
     })
       // receive and parse the data
       .then((resp) => {

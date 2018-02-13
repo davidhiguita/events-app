@@ -36,7 +36,7 @@ class SignUpForm extends Component {
     this.fieldsAreValid = this.fieldsAreValid.bind(this)
   }
 
-  handleChange (inputName, event) {
+  handleInputChange (inputName, event) {
     this.setState({ [inputName]: event.target.value })
   }
 
@@ -111,7 +111,6 @@ class SignUpForm extends Component {
 
                 <div className='sign-up-form__right-column-input'>
                   <FormControl
-                    className={classes.formControl}
                     fullWidth
                     margin='normal'
                     required
@@ -121,7 +120,7 @@ class SignUpForm extends Component {
                     </InputLabel>
                     <Input
                       value={this.state.firstName}
-                      onChange={event => this.handleChange('firstName', event)}
+                      onChange={event => this.handleInputChange('firstName', event)}
                      />
                   </FormControl>
                 </div>
@@ -138,7 +137,7 @@ class SignUpForm extends Component {
                     </InputLabel>
                     <Input
                       value={this.state.lastName}
-                      onChange={event => this.handleChange('lastName', event)}
+                      onChange={event => this.handleInputChange('lastName', event)}
                      />
                   </FormControl>
                 </div>
@@ -150,7 +149,7 @@ class SignUpForm extends Component {
                     </InputLabel>
                     <Input
                       value={this.state.email}
-                      onChange={event => this.handleChange('email', event)}
+                      onChange={event => this.handleInputChange('email', event)}
                      />
                   </FormControl>
                 </div>
@@ -162,7 +161,7 @@ class SignUpForm extends Component {
                     </InputLabel>
                     <Input
                       value={this.state.password}
-                      onChange={event => this.handleChange('password', event)}
+                      onChange={event => this.handleInputChange('password', event)}
                      />
                   </FormControl>
                 </div>
@@ -174,7 +173,7 @@ class SignUpForm extends Component {
                     </InputLabel>
                     <Input
                       value={this.state.repeatedPassword}
-                      onChange={event => this.handleChange('repeatedPassword', event)}
+                      onChange={event => this.handleInputChange('repeatedPassword', event)}
                      />
                   </FormControl>
                 </div>
