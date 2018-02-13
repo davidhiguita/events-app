@@ -16,7 +16,8 @@ let config = {
     alias: {
       images: path.resolve(__dirname, 'src/assets/images'),
       components: path.resolve(__dirname, 'src/app/components'),
-      reduxConfig: path.resolve(__dirname, 'src/app/reduxConfig')
+      reduxConfig: path.resolve(__dirname, 'src/app/reduxConfig'),
+      utils: path.resolve(__dirname, 'src/app/utils')
     }
   },
   module: {

@@ -1,7 +1,8 @@
 import {
-  FETCH_EVENTS_REQUEST,
-  FETCH_EVENTS_SUCCESS,
-  FETCH_EVENTS_FAILURE
+  EVENT_REQUEST,
+  EVENT_SUCCESS,
+  EVENT_FAILURE,
+  TOKEN_EXPIRED
 } from '../constants/constants'
 
 import utils from '../../utils/utils'
@@ -9,20 +10,27 @@ import utils from '../../utils/utils'
 import {serverUrl, token} from '../../../../env'
 import 'whatwg-fetch'
 
-const fetchEventsRequest = () => {
+const eventRequest = () => {
   return {
-    type: FETCH_EVENTS_REQUEST
+    type: EVENT_REQUEST
   }
 }
 
-const fetchEventsSuccess = events => ({
-  type: FETCH_EVENTS_SUCCESS,
-  payload: events
+const eventSuccess = (response, message = '') => ({
+  type: EVENT_SUCCESS,
+  payload: {
+    response: response,
+    message: message
+  }
 })
 
-const fetchEventsFailure = err => ({
-  type: FETCH_EVENTS_FAILURE,
+const eventFailure = err => ({
+  type: EVENT_FAILURE,
   payload: err
+})
+
+const tokenExpired = () => ({
+  type: TOKEN_EXPIRED
 })
 
 const fetchEvents = eventId => {
@@ -31,7 +39,7 @@ const fetchEvents = eventId => {
 
   return (dispatch, getState) => {
     // indicate that we are going to lunch the login request
-    dispatch(fetchEventsRequest())
+    dispatch(eventRequest())
     // launch the login request
     return fetch(urlToFetch, {
       method: 'GET',
@@ -47,17 +55,21 @@ const fetchEvents = eventId => {
       })
       .then((resp) => {
         // process the response
-        dispatch(fetchEventsSuccess(resp))
+        dispatch(eventSuccess(resp))
       })
-      .catch((err) => {
-        // @todo implement
-        dispatch(fetchEventsFailure(err))
+      .catch(err => {
+        let errMessage
+        if (err.error) {
+          errMessage = 'Oops! That email and password combination is not valid.'
+        } else {
+          errMessage = 'Something were wrong :('
+        }
+        dispatch(eventFailure(errMessage))
       })
   }
 }
 
-const createEvent = (eventInfo) => {
-  console.log('eventInfo ', eventInfo)
+const createEvent = eventInfo => {
   const fetch = window.fetch
   // info from local storage
   const profileInfo = utils.getProfileInfo()
@@ -66,7 +78,7 @@ const createEvent = (eventInfo) => {
     // launch the the request with the auth token
     return (dispatch, getState) => {
       // indicate that we are going to lunch the login request
-      dispatch(fetchEventsRequest())
+      dispatch(eventRequest())
       // launch the login request
       return fetch(`${serverUrl}/events`, {
         method: 'POST',
@@ -81,15 +93,22 @@ const createEvent = (eventInfo) => {
         .then((resp) => {
           console.log('event create response', resp)
           if (resp.status && resp.status !== 200) throw resp.json()
-          else return resp.json()
+          else return resp
         })
         .then((resp) => {
           // process the response
-          dispatch(fetchEventsSuccess(resp))
+          dispatch(eventSuccess(resp, 'The event has been created successfully'))
         })
-        .catch((err) => {
-          // @todo implement
-          dispatch(fetchEventsFailure(err))
+        .catch((resp) => {
+          resp.then(result => {
+            // redirect user to login to refresh the token
+            if (result.error === 'Auth.InvalidToken') {
+              dispatch(tokenExpired())
+            } else {
+              // show a generic error
+              dispatch(eventFailure('Something were wrong'))
+            }
+          })
         })
     }
   }
@@ -97,7 +116,8 @@ const createEvent = (eventInfo) => {
 
 const dashboardActions = {
   fetchEvents,
-  createEvent
+  createEvent,
+  eventFailure
 }
 
 export default dashboardActions

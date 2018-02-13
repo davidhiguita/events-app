@@ -4,6 +4,8 @@ import { FormControl } from 'material-ui/Form'
 import Input, { InputLabel } from 'material-ui/Input'
 import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
+// util functions
+import utils from 'utils/utils'
 
 const styles = {
   chip: {
@@ -33,6 +35,7 @@ class DashboardEventNewForm extends Component {
       capacity: ''
     }
     this.onClickCreateEventBtn = this.onClickCreateEventBtn.bind(this)
+    this.buildFeedBackText = this.buildFeedBackText.bind(this)
   }
 
   handleInputChange (inputName, event) {
@@ -40,18 +43,39 @@ class DashboardEventNewForm extends Component {
   }
 
   onClickCreateEventBtn () {
-    const { createEvent } = this.props
-    createEvent(this.state)
+    const { createEvent, eventFailure } = this.props
+    if (utils.fieldsAreValid) {
+      const newObject = Object.assign({}, this.state, {'startsAt': this.state.time})
+      createEvent(newObject)
+    } else {
+      eventFailure('All fields with * are required')
+    }
+  }
+
+  buildFeedBackText () {
+    const { events: { error, errorMessage, success, successMessage } } = this.props
+    let componentToRender
+
+    if (!error && !success) {
+      componentToRender = <div className='dasboard-event-new__feedback-text'>Enter your details below</div>
+    } else if (success && !error) {
+      componentToRender = <div className='dasboard-event-new__feedback-text'>{successMessage}</div>
+    } else {
+      componentToRender = <div className='dasboard-event-new__feedback-text--red'>{errorMessage}</div>
+    }
+    return componentToRender
   }
 
   render () {
     const { classes } = this.props
+    const feedbackText = this.buildFeedBackText()
+
     return (
       <div className='dasboard-event-new__form'>
 
         <div className='dasboard-event-new__form-title'>
           <h1>Create new event</h1>
-          <span>Enter details below</span>
+          {feedbackText}
         </div>
 
         <div className='dasboard-event-new__form-fields'>
