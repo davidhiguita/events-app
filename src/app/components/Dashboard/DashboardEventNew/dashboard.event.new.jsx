@@ -11,7 +11,6 @@ import Grid from 'material-ui/Grid'
 import DashboardEventNewForm from 'components/Dashboard/DashboardEventNew/DashboardEventNewForm/dashboard.event.new.form'
 
 class DashboardEventNew extends Component {
-
   buildContent () {
     const { events: { tokenExpired }, loginFailure } = this.props
     // redirect to login page if the token has expired

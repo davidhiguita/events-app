@@ -14,6 +14,7 @@ import SignUp from 'components/SignUp/signup'
 import Dashboard from 'components/Dashboard/dashboard'
 import DashboardEventDetail from 'components/Dashboard/DashboardEventDetail/dashboard.event.detail'
 import DashboardEventNew from 'components/Dashboard/DashboardEventNew/dashboard.event.new'
+import DashboardEventEdit from 'components/Dashboard/dashboard.event.edit/dashboard.event.edit'
 
 import thunkMiddleware from 'redux-thunk'
 
@@ -53,6 +54,7 @@ class App extends Component {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/event-detail/:id' component={DashboardEventDetail} />
         <Route path='/event-new/' component={DashboardEventNew} />
+        <Route path='/event-edit/:id' component={DashboardEventEdit} />
       </div>
     )
   }

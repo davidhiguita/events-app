@@ -113,10 +113,15 @@ const createEvent = eventInfo => {
   }
 }
 
+const editEvent = eventInfo => {
+  // todo implement
+}
+
 const dashboardActions = {
   fetchEvents,
   createEvent,
-  eventFailure
+  eventFailure,
+  editEvent
 }
 
 export default dashboardActions

@@ -22,6 +22,7 @@ class DashboardEvent extends Component {
     }
     this.redirectToEventDetail = this.redirectToEventDetail.bind(this)
     this.buildContent = this.buildContent.bind(this)
+    this.onClickEditEventBtn = this.onClickEditEventBtn.bind(this)
   }
 
   redirectToEventDetail () {
@@ -31,18 +32,18 @@ class DashboardEvent extends Component {
     }
   }
 
+  onClickEditEventBtn () {
+    const { history, eventInfo } = this.props
+    history.push(`/event-edit/${eventInfo.id}`)
+  }
+
   buildContent () {
     const {eventInfo, classes} = this.props
+    // redirect to event-detail page when clicking an event
     if (this.state.redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: `/event-detail/${eventInfo.id}`,
-            state: { from: this.props.location }
-          }}
-        />
-      )
+      return <Redirect to={{pathname: `/event-detail/${eventInfo.id}`}} />
     }
+    // otherwise return the normal event view
     return (
       <div className='dashboard-event'>
         <div className='dashboard-event__content' onClick={this.redirectToEventDetail}>
@@ -56,7 +57,7 @@ class DashboardEvent extends Component {
         <div className='dashboard-event__footer'>
           <div className='dashboard-event__footer-counter'>9 of 31</div>
           <div className='dashboard-event__footer-btn'>
-            <Button variant='raised' className={classes.button} onClick={() => {}}>EDIT</Button>
+            <Button variant='raised' className={classes.button} onClick={this.onClickEditEventBtn}>EDIT</Button>
           </div>
         </div>
       </div>

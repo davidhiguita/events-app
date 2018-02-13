@@ -1,14 +1,11 @@
+// react stuff
 import React, {Component} from 'react'
 // redux stuff
 import { connect } from 'react-redux'
 import dashboardActions from 'reduxConfig/actions/dashboard'
-// material ui
-import Grid from 'material-ui/Grid'
-import { Link } from 'react-router-dom'
 // components
-import DashboardEvent from 'components/Dashboard/DashboardEvent/dashboard.event'
-import ProfileIcon from 'components/ProfileIcon/ProfileIcon'
 import AttendeeCircle from 'components/Dashboard/DashboardEventDetail/AttendeeCircle/attendee.circle'
+import DashBoardEventDetailForm from 'components/Dashboard/DashboardEventDetail/DashBoardEventDetailForm/dashboard.event.detail.form'
 
 class DashboardEventDetail extends Component {
   constructor (props) {
@@ -16,8 +13,8 @@ class DashboardEventDetail extends Component {
     this.buildAttendeesContent = this.buildAttendeesContent.bind(this)
   }
   componentDidMount () {
-    const { match: {params: {id}} } = this.props
-    this.props.fetchEvents(id)
+    const { match: {params: {id}}, fetchEvents } = this.props
+    fetchEvents(id)
   }
 
   buildAttendeesContent () {
@@ -36,37 +33,15 @@ class DashboardEventDetail extends Component {
     }
   }
 
-  render () {
-    const { events: {eventList: eventDetail} } = this.props
+  buildContent () {
+    const { events: { eventList: eventDetail } } = this.props
     const attendees = this.buildAttendeesContent()
-    return (
-      <Grid container className='dashboard-event-detail' spacing={24}>
-        <Grid item md={12} sm={12} xs={12}>
-          <div className='dashboard-event-detail__container'>
-            <div className='dashboard-event-detail__top-bar'>
-              <div className='dashboard-event-detail__top-bar-title'>
-                <Link to='/dashboard'>Back to events </Link>
-              </div>
-              <ProfileIcon />
-            </div>
-            <div className='dashboard-event-detail__event-number'>
-              Detail Event: # { eventDetail ? eventDetail['_id'] : '' }
-            </div>
-            <div className='dashboard-event-detail__columns'>
-              <DashboardEvent eventInfo={eventDetail} />
-              <div className='dashboard-event-detail__attendees'>
-                <div className='dashboard-event-detail__attendees-title'>
-                  Attendees
-                </div>
-                <div className='dashboard-event-detail__attendees-items'>
-                  {attendees}
-                </div>
-              </div>
-            </div>
-          </div>
-        </Grid>
-      </Grid>
-    )
+
+    return <DashBoardEventDetailForm attendees={attendees} eventDetail={eventDetail} />
+  }
+
+  render () {
+    return this.buildContent()
   }
 }
 
