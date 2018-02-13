@@ -49,7 +49,7 @@ class App extends Component {
     return (
       <div>
         <Route path='/login' component={Login} />
-        <Route path='/signUp' component={SignUp} />
+        <Route path='/signup' component={SignUp} />
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/event-detail/:id' component={DashboardEventDetail} />
         <Route path='/event-new/' component={DashboardEventNew} />
