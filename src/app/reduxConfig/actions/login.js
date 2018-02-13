@@ -44,11 +44,17 @@ const login = userCredentials => {
       // receive and parse the data
       .then((resp) => {
         if (resp.status && resp.status !== 200) throw resp.json()
-        else return resp.json()
+        else return resp
       })
       .then((resp) => {
-        // process the response
-        dispatch(loginSuccess(resp))
+        const authToken = resp.headers.get('authorization')
+        const respPromise = resp.json()
+        // resolve the promise to get the response
+        respPromise.then(respObj => {
+          const newRespObj = Object.assign({}, respObj, {'authToken': authToken})
+          // process the response
+          dispatch(loginSuccess(newRespObj))
+        })
       })
       .catch((resp) => {
         resp.then(result => {

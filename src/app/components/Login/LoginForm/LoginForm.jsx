@@ -1,12 +1,11 @@
 // react stuff
 import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 // material ui components
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
 import { withStyles } from 'material-ui/styles'
 import Grid from 'material-ui/Grid'
-import { Link } from 'react-router-dom'
 import { FormControl } from 'material-ui/Form'
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input'
 import IconButton from 'material-ui/IconButton'
@@ -18,11 +17,11 @@ const styles = theme => ({
     width: 480
   },
   button: {
-    'background-color': '#09E06F',
+    'background-color': '#5ac296',
     'font-size': 10,
     'color': '#fff',
-    'width': 169,
-    'height': 37
+    'width': 240,
+    'height': 57
   }
 })
 
