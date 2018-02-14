@@ -21,7 +21,7 @@ const styles = {
   }
 }
 
-const AddEventIcon = props => {
+const CustomCircle = props => {
   const {onClickIcon, classes, color} = props
   let style
   let icon
@@ -41,4 +41,4 @@ const AddEventIcon = props => {
   )
 }
 
-export default withStyles(styles)(AddEventIcon)
+export default withStyles(styles)(CustomCircle)
