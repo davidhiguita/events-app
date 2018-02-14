@@ -92,14 +92,15 @@ const createEvent = eventInfo => {
         // receive and parse the data
         .then((resp) => {
           if (resp.status && (resp.status === 200 || resp.status === 201)) return resp.json()
-          else return resp
+          else throw resp
         })
         .then((resp) => {
           // process the response
           dispatch(eventSuccess(resp, 'The event has been created successfully'))
         })
         .catch((resp) => {
-          resp.then(result => {
+          const respAsPromise = resp.json()
+          respAsPromise.then(result => {
             // redirect user to login to refresh the token
             if (result.error === 'Auth.InvalidToken') {
               dispatch(tokenExpired())
@@ -114,7 +115,49 @@ const createEvent = eventInfo => {
 }
 
 const editEvent = eventInfo => {
-  // todo implement
+  const fetch = window.fetch
+  // info from local storage
+  const profileInfo = utils.getProfileInfo()
+  // check if we have auth token
+  if (profileInfo && profileInfo.authToken) {
+    // launch the the request with the auth token
+    return (dispatch, getState) => {
+      // indicate that we are going to lunch the login request
+      dispatch(eventRequest())
+      // launch the login request
+      return fetch(`${serverUrl}/events/${eventInfo.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'APIKey': token,
+          'Authorization': profileInfo.authToken
+        },
+        body: JSON.stringify(eventInfo)
+      })
+        // receive and parse the data
+        .then((resp) => {
+          console.log('server response ', resp)
+          if (resp.status && (resp.status === 200 || resp.status === 201)) return resp.json()
+          else throw resp
+        })
+        .then((resp) => {
+          // process the response
+          dispatch(eventSuccess(resp, 'The event has been created successfully'))
+        })
+        .catch((resp) => {
+          const respAsPromise = resp.json()
+          respAsPromise.then(result => {
+            // redirect user to login to refresh the token
+            if (result.error === 'Auth.InvalidToken') {
+              dispatch(tokenExpired())
+            } else {
+              // show a generic error
+              dispatch(eventFailure('Something were wrong'))
+            }
+          })
+        })
+    }
+  }
 }
 
 const dashboardActions = {

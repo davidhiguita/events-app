@@ -66,8 +66,8 @@ class DashBoardEventEditForm extends Component {
   }
 
   render () {
-    const { attendees, classes } = this.props
-    const { date, time, title, description, capacity, id, onClickSaveIcon } = this.state
+    const { attendees, classes, onClickSaveIcon } = this.props
+    const { date, time, title, description, capacity, id } = this.state
     return (
       <Grid container className='dashboard-event-edit' spacing={24}>
         <Grid item md={12} sm={12} xs={12}>
@@ -179,7 +179,7 @@ class DashBoardEventEditForm extends Component {
             </div>
 
             <div className='dashboard-event-edit__footer'>
-              <AddEventIcon onClickIcon={onClickSaveIcon} color={'greenCircle'} />
+              <AddEventIcon onClickIcon={() => { onClickSaveIcon(this.state) }} color={'greenCircle'} />
             </div>
 
           </div>

@@ -1,8 +1,10 @@
 // react stuff
 import React, {Component} from 'react'
+import { Redirect } from 'react-router-dom'
 // redux stuff
 import { connect } from 'react-redux'
 import dashboardActions from 'reduxConfig/actions/dashboard'
+import loginActions from 'reduxConfig/actions/login'
 // components
 import AttendeeCircle from 'components/Dashboard/DashboardEventDetail/AttendeeCircle/attendee.circle'
 import DashBoardEventEditForm from 'components/Dashboard/dashboard.event.edit/dashboard.event.edit.form/dashboard.event.edit.form'
@@ -22,6 +24,7 @@ class DashboardEventEdit extends Component {
 
     this.buildAttendeesContent = this.buildAttendeesContent.bind(this)
     this.buildContent = this.buildContent.bind(this)
+    this.onClickSaveIcon = this.onClickSaveIcon.bind(this)
   }
 
   componentDidMount () {
@@ -72,11 +75,32 @@ class DashboardEventEdit extends Component {
     }
   }
 
-  onClickSaveIcon () {
-    // todo implement
+  onClickSaveIcon (eventInfo) {
+    let startsAt = new Date(`${eventInfo.date} ${eventInfo.time}`)
+
+    if (startsAt.toString() === 'Invalid Date') {
+      const { events: { eventList: oldEventInfo } } = this.props
+      startsAt = oldEventInfo.startsAt
+    }
+    // launch the request to update the event
+    const infoToSent = {
+      title: eventInfo.title,
+      description: eventInfo.description,
+      capacity: eventInfo.capacity,
+      startsAt: startsAt
+    }
+    this.props.editEvent(infoToSent)
   }
 
   buildContent () {
+    const { events: { tokenExpired }, loginFailure } = this.props
+    // redirect to login page if the token has expired
+    if (tokenExpired) {
+      // dispatch this to show up the error in login page
+      loginFailure('The session has expired, please login')
+      return <Redirect to={{pathname: `/login`}} />
+    }
+
     const attendees = this.buildAttendeesContent()
     const defaultEventInfo = this.getEventInfoReady()
     return (
@@ -102,6 +126,7 @@ export default connect(
   // map actions
   {
     editEvent: dashboardActions.editEvent,
-    fetchEvents: dashboardActions.fetchEvents
+    fetchEvents: dashboardActions.fetchEvents,
+    loginFailure: loginActions.loginFailure
   }
 )(DashboardEventEdit)
