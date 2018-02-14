@@ -2,6 +2,12 @@
 .dashboard {
   background-color: $light-gray;
 
+  &__top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
   &__container {
     min-height: 765px;
     width: calc(100% - 190px);
@@ -23,7 +29,8 @@
 
   &__menu {
     display: flex;
-    margin: 0 auto;
+    margin: 40px 0 20px 10px;
+    align-items: center;
   }
 
   &__menu-list {
@@ -31,7 +38,7 @@
     margin: 0;
     display: flex;
     list-style-type: none;
-    margin: 20px 10px;
+    margin-right: 20px;
     li{
       margin-right: 10px;
     }
@@ -39,7 +46,7 @@
 
   &__menu-icons {
     display: flex;
-    margin: 20px 0;
+    align-items: center;
   }
 
   &__events-footer {

@@ -1,6 +1,6 @@
 // react stuff
 import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 // redux stuff
 import { connect } from 'react-redux'
 import dashboardActions from 'reduxConfig/actions/dashboard'
@@ -8,7 +8,8 @@ import dashboardActions from 'reduxConfig/actions/dashboard'
 import Grid from 'material-ui/Grid'
 // components
 import DashboardEvent from 'components/Dashboard/DashboardEvent/dashboard.event'
-import AddEventIcon from 'components/AddEventIcon/add.event.icon'
+import CustomCircle from 'components/custom.circle/custom.circle'
+import ProfileIcon from 'components/ProfileIcon/ProfileIcon'
 
 class Dashboard extends Component {
   constructor (props) {
@@ -56,7 +57,11 @@ class Dashboard extends Component {
       <Grid container className='dashboard' spacing={24}>
         <Grid item md={12} sm={12} xs={12}>
           <div className='dashboard__container'>
-            <div className='dashboard__user-bar'>Tom Watts title</div>
+
+            <div className='dashboard__top-bar'>
+              <ProfileIcon />
+            </div>
+
             <div className='dashboard__menu'>
               <ul className='dashboard__menu-list'>
                 <li> ALL EVENTS</li>
@@ -68,12 +73,15 @@ class Dashboard extends Component {
                 <div>icon2</div>
               </div>
             </div>
+
             <div className='dashboard__events'>
               {events}
             </div>
+
             <div className='dashboard__events-footer'>
-              <AddEventIcon onClickIcon={this.onClickAddEventIcon} />
+              <CustomCircle onClickIcon={this.onClickAddEventIcon} />
             </div>
+
           </div>
         </Grid>
       </Grid>
