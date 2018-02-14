@@ -9,7 +9,7 @@ import { withStyles } from 'material-ui/styles'
 
 // components
 import ProfileIcon from 'components/ProfileIcon/ProfileIcon'
-import AddEventIcon from 'components/AddEventIcon/add.event.icon'
+import CustomCircle from 'components/custom.circle/custom.circle'
 
 const styles = {
   chip: {
@@ -179,7 +179,7 @@ class DashBoardEventEditForm extends Component {
             </div>
 
             <div className='dashboard-event-edit__footer'>
-              <AddEventIcon onClickIcon={() => { onClickSaveIcon(this.state) }} color={'greenCircle'} />
+              <CustomCircle onClickIcon={() => { onClickSaveIcon(this.state) }} color={'greenCircle'} />
             </div>
 
           </div>
