@@ -45,7 +45,7 @@ class DashboardEvent extends Component {
     }
     // otherwise return the normal event view
     return (
-      <div className='dashboard-event'>
+      <div className='dashboard-event custom-box-shadow'>
         <div className='dashboard-event__content' onClick={this.redirectToEventDetail}>
           <div className='dashboard-event__time'>{ eventInfo && eventInfo.startsAt ? eventInfo.startsAt : ''}</div>
           <div className='dashboard-event__title'>{ eventInfo && eventInfo.title ? eventInfo.title : ''}</div>
