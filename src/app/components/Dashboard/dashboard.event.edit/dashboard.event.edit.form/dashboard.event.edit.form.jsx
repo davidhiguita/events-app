@@ -9,6 +9,7 @@ import { withStyles } from 'material-ui/styles'
 
 // components
 import ProfileIcon from 'components/ProfileIcon/ProfileIcon'
+import AddEventIcon from 'components/AddEventIcon/add.event.icon'
 
 const styles = {
   chip: {
@@ -66,22 +67,24 @@ class DashBoardEventEditForm extends Component {
 
   render () {
     const { attendees, classes } = this.props
-    const { date, time, title, description, capacity, id } = this.state
+    const { date, time, title, description, capacity, id, onClickSaveIcon } = this.state
     return (
       <Grid container className='dashboard-event-edit' spacing={24}>
         <Grid item md={12} sm={12} xs={12}>
           <div className='dashboard-event-edit__container'>
+
             <div className='dashboard-event-edit__top-bar'>
               <div className='dashboard-event-edit__top-bar-title'>
                 <Link to='/dashboard'>Back to events </Link>
               </div>
               <ProfileIcon />
             </div>
+
             <div className='dashboard-event-edit__event-number'>
               Detail Event: # { id }
             </div>
-            <div className='dashboard-event-edit__columns'>
 
+            <div className='dashboard-event-edit__columns'>
               <div className='dashboard-event'>
                 <div className='dashboard-event__input'>
                   <FormControl
@@ -173,8 +176,12 @@ class DashBoardEventEditForm extends Component {
                   {attendees}
                 </div>
               </div>
-
             </div>
+
+            <div className='dashboard-event-edit__footer'>
+              <AddEventIcon onClickIcon={onClickSaveIcon} color={'greenCircle'} />
+            </div>
+
           </div>
         </Grid>
       </Grid>

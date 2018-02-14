@@ -72,11 +72,16 @@ class DashboardEventEdit extends Component {
     }
   }
 
+  onClickSaveIcon () {
+    // todo implement
+  }
+
   buildContent () {
     const attendees = this.buildAttendeesContent()
     const defaultEventInfo = this.getEventInfoReady()
     return (
       <DashBoardEventEditForm
+        onClickSaveIcon={this.onClickSaveIcon}
         defaultEventInfo={defaultEventInfo}
         attendees={attendees}
       />
