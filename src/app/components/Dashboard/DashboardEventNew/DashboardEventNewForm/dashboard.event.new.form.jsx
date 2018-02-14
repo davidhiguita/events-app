@@ -6,23 +6,10 @@ import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 // util functions
 import utils from 'utils/utils'
-
-const styles = {
-  chip: {
-    'color': '#949EA8',
-    'backgroundColor': '#D9DCE1'
-  },
-  button: {
-    'background-color': '#5ac296',
-    'font-size': 10,
-    'color': '#fff',
-    'width': 240,
-    'height': 57
-  },
-  rootLabel: {
-    color: '#D8D8D8'
-  }
-}
+// components
+import CustomButton from 'components/custom.button/custom.button'
+// styles to override in components
+import inputStyles from 'components/with.styles/input'
 
 class DashboardEventNewForm extends Component {
   constructor (props) {
@@ -79,7 +66,7 @@ class DashboardEventNewForm extends Component {
     const feedbackText = this.buildFeedBackText()
 
     return (
-      <div className='dasboard-event-new__form'>
+      <div className='dasboard-event-new__form custom-box-shadow'>
 
         <div className='dasboard-event-new__form-title'>
           <h1>Create new event</h1>
@@ -97,6 +84,7 @@ class DashboardEventNewForm extends Component {
                 Title
               </InputLabel>
               <Input
+                classes={{inkbar: classes.inkbar}}
                 value={this.state.title}
                 onChange={event => this.handleInputChange('title', event)}
                 />
@@ -113,6 +101,7 @@ class DashboardEventNewForm extends Component {
                 Description
               </InputLabel>
               <Input
+                classes={{inkbar: classes.inkbar}}
                 value={this.state.description}
                 onChange={event => this.handleInputChange('description', event)}
                 />
@@ -129,6 +118,7 @@ class DashboardEventNewForm extends Component {
                 Date
               </InputLabel>
               <Input
+                classes={{inkbar: classes.inkbar}}
                 value={this.state.date}
                 onChange={event => this.handleInputChange('date', event)}
                 />
@@ -145,6 +135,7 @@ class DashboardEventNewForm extends Component {
                 Time
               </InputLabel>
               <Input
+                classes={{inkbar: classes.inkbar}}
                 value={this.state.time}
                 onChange={event => this.handleInputChange('time', event)}
                 />
@@ -161,6 +152,7 @@ class DashboardEventNewForm extends Component {
                 Capacity
               </InputLabel>
               <Input
+                classes={{inkbar: classes.inkbar}}
                 value={this.state.capacity}
                 onChange={event => this.handleInputChange('capacity', event)}
                 />
@@ -168,9 +160,7 @@ class DashboardEventNewForm extends Component {
           </div>
 
           <div className='dasboard-event-new__submit-btn'>
-            <Button variant='raised' className={classes.button} onClick={this.onClickCreateEventBtn}>
-              CREATE NEW EVENT
-            </Button>
+            <CustomButton text={'CREATE NEW EVENT'} onClickHandler={this.onClickCreateEventBtn} />
           </div>
         </div>
 
@@ -179,4 +169,4 @@ class DashboardEventNewForm extends Component {
   }
 }
 
-export default withStyles(styles)(DashboardEventNewForm)
+export default withStyles(inputStyles)(DashboardEventNewForm)
