@@ -1,14 +1,20 @@
 .dashboard-event-detail {
   background-color: $light-gray;
 
+
   &__top-bar {
     display: flex;
     align-items: center;
+    margin-top:20px;
   }
 
   &__top-bar-title{
     flex-basis: 55%;
-    text-align: right;
+    a{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
   }
 
   .profile-icon{
