@@ -40,11 +40,8 @@ const signUp = userInfo => {
     })
       // receive and parse the data
       .then((resp) => {
-        if (resp.status && resp.status === 200) {
-          return resp.json()
-        } else {
-          throw resp
-        }
+        if (resp.status && (resp.status === 200 || resp.status === 201)) return resp
+        else throw resp
       })
       .then((resp) => {
         // process the response

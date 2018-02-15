@@ -40,8 +40,8 @@ const login = userCredentials => {
     })
       // receive and parse the data
       .then((resp) => {
-        if (resp.status && resp.status !== 200) throw resp.json()
-        else return resp
+        if (resp.status && (resp.status === 200 || resp.status === 201)) return resp
+        else throw resp
       })
       .then((resp) => {
         const authToken = resp.headers.get('authorization')
@@ -54,7 +54,8 @@ const login = userCredentials => {
         })
       })
       .catch((resp) => {
-        resp.then(result => {
+        const respPromise = resp.json()
+        respPromise.then(result => {
           let errMessage
           if (result.error === 'User.InvalidPassword') {
             errMessage = 'Oops! That email and password combination is not valid.'
