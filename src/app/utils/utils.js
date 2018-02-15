@@ -36,6 +36,7 @@ const fieldIsValid = (field, value, type) => {
       break
     default:
       if (String(value).length === 0) {
+        console.log('went here')
         valid['valid'] = false
         valid[field] = true
         valid['message'] = 'please fill in the information'

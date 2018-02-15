@@ -21,7 +21,10 @@ class DashboardEventNewForm extends Component {
       capacity: '',
       errors: {
         'capacity': {error: false, message: ''},
-        'time': { error: false, message: '' }
+        'time': { error: false, message: '' },
+        'title': { error: false, message: '' },
+        'description': { error: false, message: '' },
+        'date': { error: false, message: '' }
       }
     }
     this.onClickCreateEventBtn = this.onClickCreateEventBtn.bind(this)
@@ -93,15 +96,19 @@ class DashboardEventNewForm extends Component {
               fullWidth
               margin='normal'
               required
+              error={this.state.errors.title.error}
               >
               <InputLabel classes={{root: classes.rootLabel}}>
                 Title
               </InputLabel>
               <Input
-                classes={{inkbar: classes.inkbar}}
+                classes={{inkbar: classes.inkbar, error: classes.error}}
                 value={this.state.title}
                 onChange={event => this.handleInputChange('title', event)}
                 />
+              <FormHelperText>
+                {this.state.errors.title ? this.state.errors.title.message : ''}
+              </FormHelperText>
             </FormControl>
           </div>
 
@@ -110,15 +117,19 @@ class DashboardEventNewForm extends Component {
               fullWidth
               margin='normal'
               required
+              error={this.state.errors.description.error}
               >
               <InputLabel classes={{root: classes.rootLabel}}>
                 Description
               </InputLabel>
               <Input
-                classes={{inkbar: classes.inkbar}}
+                classes={{inkbar: classes.inkbar, error: classes.error}}
                 value={this.state.description}
                 onChange={event => this.handleInputChange('description', event)}
                 />
+              <FormHelperText>
+                {this.state.errors.description ? this.state.errors.description.message : ''}
+              </FormHelperText>
             </FormControl>
           </div>
 
@@ -127,15 +138,19 @@ class DashboardEventNewForm extends Component {
               fullWidth
               margin='normal'
               required
+              error={this.state.errors.date.error}
               >
               <InputLabel classes={{root: classes.rootLabel}}>
                 Date
               </InputLabel>
               <Input
-                classes={{inkbar: classes.inkbar}}
+                classes={{inkbar: classes.inkbar, error: classes.error}}
                 value={this.state.date}
                 onChange={event => this.handleInputChange('date', event)}
                 />
+              <FormHelperText>
+                {this.state.errors.date ? this.state.errors.date.message : ''}
+              </FormHelperText>
             </FormControl>
           </div>
 
@@ -164,6 +179,7 @@ class DashboardEventNewForm extends Component {
             <FormControl
               fullWidth
               margin='normal'
+              required
               error={this.state.errors.capacity.error}
               >
               <InputLabel classes={{ root: classes.rootLabel }}>
