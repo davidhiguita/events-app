@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 // material ui
 import Grid from 'material-ui/Grid'
-import DoneIcon from 'material-ui-icons/arrowBack'
+import LeftArrow from 'material-ui-icons/arrowBack'
 
 // components
 import ProfileIcon from 'components/ProfileIcon/ProfileIcon'
@@ -18,7 +18,7 @@ const DashBoardEventDetailForm = props => {
           <div className='dashboard-event-detail__top-bar'>
             <div className='dashboard-event-detail__top-bar-title'>
               <Link to='/dashboard'>
-                <DoneIcon />
+                <LeftArrow />
                 Back to events
               </Link>
             </div>
