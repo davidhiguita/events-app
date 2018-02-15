@@ -8,27 +8,50 @@ const getProfileInfo = () => {
     return null
   }
 }
+
 // set profile info into local storage
 const setProfileInfo = userInfoAsString => {
   window.localStorage.setItem('eventioSession', userInfoAsString)
 }
-const fieldsAreValid = (fields, fieldTypes = {}) => {
-  let valid = { 'valid': true, field: '' }
-  let fieldValue
-  let fieldType
+
+// field is valid
+const fieldIsValid = (field, value, type) => {
+  let valid = { 'valid': true, [field]: false, 'message': '' }
+
+  switch (type) {
+    case 'int':
+      if (isNaN(parseInt(value))) {
+        valid['valid'] = false
+        valid[field] = true
+        valid['message'] = 'please fill in a numeric value'
+      }
+      break
+    case 'time':
+      let re = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/
+      if (!value.match(re)) {
+        valid['valid'] = false
+        valid[field] = true
+        valid['message'] = 'please fill in a time like 13:00'
+      }
+      break
+    default:
+      if (String(value).length === 0) {
+        valid['valid'] = false
+        valid[field] = true
+        valid['message'] = 'please fill in the information'
+      }
+  }
+
+  return valid
+}
+
+const fieldsAreValid = (fields, errors) => {
+  let valid = true
 
   for (let field in fields) {
-    fieldValue = fields[field]
-    fieldType = fieldTypes[field] ? fieldTypes[field] : null
-    // field is empty
-    if (fieldValue === '') {
-      valid = { 'valid': false, 'field': field }
+    if (String(fields[field]).length === 0 || errors[field]) {
+      valid = false
       break
-    } else if (fieldType === 'int') { // validate int field type
-      if (isNaN(parseInt(fieldValue))) {
-        valid = { 'valid': false, 'field': field }
-        break
-      }
     }
   }
   return valid
@@ -37,7 +60,8 @@ const fieldsAreValid = (fields, fieldTypes = {}) => {
 const utils = {
   getProfileInfo,
   setProfileInfo,
-  fieldsAreValid
+  fieldsAreValid,
+  fieldIsValid
 }
 
 export default utils
