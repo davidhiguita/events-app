@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 // material ui stuff
-import { FormControl } from 'material-ui/Form'
+import { FormControl, FormHelperText } from 'material-ui/Form'
 import Input, { InputLabel } from 'material-ui/Input'
 import { withStyles } from 'material-ui/styles'
-import Button from 'material-ui/Button'
 // util functions
 import utils from 'utils/utils'
 // components
@@ -19,20 +18,34 @@ class DashboardEventNewForm extends Component {
       description: '',
       date: '',
       time: '',
-      capacity: ''
+      capacity: '',
+      errors: {
+        'capacity': {error: false, message: ''},
+        'time': { error: false, message: '' }
+      }
     }
     this.onClickCreateEventBtn = this.onClickCreateEventBtn.bind(this)
     this.buildFeedBackText = this.buildFeedBackText.bind(this)
   }
 
-  handleInputChange (inputName, event) {
-    this.setState({ [inputName]: event.target.value })
+  handleInputChange (inputName, event, type = '') {
+    let validField = utils.fieldIsValid(inputName, event.target.value, type)
+
+    let newStateErrors = Object.assign({}, this.state.errors, {
+      [inputName]: {error: validField[inputName], message: validField['message']}
+    })
+    // update the state with the values and errors
+    this.setState({
+      [inputName]: event.target.value,
+      'errors': newStateErrors
+    })
   }
 
   onClickCreateEventBtn () {
     const { createEvent, eventFailure } = this.props
-    const fieldsValidation = utils.fieldsAreValid(this.state, {capacity: 'int'})
-    if (fieldsValidation['valid']) {
+    const fieldsValid = utils.fieldsAreValid(this.state, this.state.errors)
+
+    if (fieldsValid) {
       let currentDate = new Date()
       currentDate.setDate(currentDate.getDate() + 1)
       const newObject = {
@@ -41,9 +54,10 @@ class DashboardEventNewForm extends Component {
         'title': this.state.title,
         'description': this.state.description
       }
+
       createEvent(newObject)
     } else {
-      eventFailure('All fields with * are required')
+      eventFailure('All fields are required')
     }
   }
 
@@ -64,7 +78,7 @@ class DashboardEventNewForm extends Component {
   render () {
     const { classes } = this.props
     const feedbackText = this.buildFeedBackText()
-
+    console.log('current state ', this.state)
     return (
       <div className='dasboard-event-new__form custom-box-shadow'>
 
@@ -130,15 +144,19 @@ class DashboardEventNewForm extends Component {
               fullWidth
               margin='normal'
               required
+              error={this.state.errors.time.error}
               >
               <InputLabel classes={{root: classes.rootLabel}}>
                 Time
               </InputLabel>
               <Input
-                classes={{inkbar: classes.inkbar}}
+                classes={{inkbar: classes.inkbar, error: classes.error}}
                 value={this.state.time}
-                onChange={event => this.handleInputChange('time', event)}
+                onChange={event => this.handleInputChange('time', event, 'time')}
                 />
+              <FormHelperText>
+                {this.state.errors.time ? this.state.errors.time.message : ''}
+              </FormHelperText>
             </FormControl>
           </div>
 
@@ -146,16 +164,19 @@ class DashboardEventNewForm extends Component {
             <FormControl
               fullWidth
               margin='normal'
-              required
+              error={this.state.errors.capacity.error}
               >
-              <InputLabel classes={{root: classes.rootLabel}}>
-                Capacity
+              <InputLabel classes={{ root: classes.rootLabel }}>
+                Capacity test
               </InputLabel>
               <Input
-                classes={{inkbar: classes.inkbar}}
+                classes={{inkbar: classes.inkbar, error: classes.error}}
                 value={this.state.capacity}
-                onChange={event => this.handleInputChange('capacity', event)}
+                onChange={event => this.handleInputChange('capacity', event, 'int')}
                 />
+              <FormHelperText>
+                {this.state.errors.capacity ? this.state.errors.capacity.message : ''}
+              </FormHelperText>
             </FormControl>
           </div>
 
