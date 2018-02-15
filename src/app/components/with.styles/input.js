@@ -9,6 +9,11 @@ const inputStyles = {
     '&:before': {
       backgroundColor: '#DAE1E7'
     }
+  },
+  error: {
+    '&:after': {
+      backgroundColor: '#f44336'
+    }
   }
 }
 
