@@ -4,6 +4,7 @@ import {Redirect} from 'react-router-dom'
 /* Material ui stuff */
 import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
+import PersonIcon from 'material-ui-icons/person'
 
 const styles = {
   button: {
@@ -13,7 +14,6 @@ const styles = {
     'backgroundColor': '#D9DCE1'
   }
 }
-
 class DashboardEvent extends Component {
   constructor (props) {
     super(props)
@@ -55,7 +55,9 @@ class DashboardEvent extends Component {
           </div>
         </div>
         <div className='dashboard-event__footer'>
-          <div className='dashboard-event__footer-counter'>9 of 31</div>
+          <div className='dashboard-event__footer-counter'>
+            <PersonIcon /> <span>9 of 31</span>
+          </div>
           <div className='dashboard-event__footer-btn'>
             <Button variant='raised' className={classes.button} onClick={this.onClickEditEventBtn}>EDIT</Button>
           </div>
