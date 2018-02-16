@@ -49,6 +49,7 @@ class App extends Component {
   render () {
     return (
       <div>
+        <Route exact path='/' component={Login} />
         <Route path='/login' component={Login} />
         <Route path='/signup' component={SignUp} />
         <Route path='/dashboard' component={Dashboard} />
