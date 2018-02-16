@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 // material ui components
-import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
 import { withStyles } from 'material-ui/styles'
 import Grid from 'material-ui/Grid'
@@ -11,6 +10,8 @@ import Input, { InputLabel, InputAdornment } from 'material-ui/Input'
 import IconButton from 'material-ui/IconButton'
 import Visibility from 'material-ui-icons/Visibility'
 import VisibilityOff from 'material-ui-icons/VisibilityOff'
+// components
+import CustomButton from 'components/custom.button/custom.button'
 
 const styles = theme => ({
   textField: {
@@ -144,7 +145,7 @@ class LoginForm extends Component {
                   </FormControl>
                 </div>
                 <div className='login-form__right-column-submit-btn'>
-                  <Button variant='raised' className={classes.button} onClick={this.onClickSubmitBtn}>SIGN IN</Button>
+                  <CustomButton text={'SIGN IN'} onClickHandler={this.onClickSubmitBtn} />
                 </div>
               </form>
             </div>
