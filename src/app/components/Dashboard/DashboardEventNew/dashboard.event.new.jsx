@@ -6,7 +6,7 @@ import dashboardActions from 'reduxConfig/actions/dashboard'
 import loginActions from 'reduxConfig/actions/login'
 // material ui stuff
 import Grid from 'material-ui/Grid'
-import CloseIcon from 'material-ui-icons/close'
+import {Close} from 'material-ui-icons'
 // components
 import DashboardEventNewForm from 'components/Dashboard/DashboardEventNew/DashboardEventNewForm/dashboard.event.new.form'
 
@@ -34,7 +34,7 @@ class DashboardEventNew extends Component {
       <Grid container className='dasboard-event-new' spacing={24}>
         <Grid item md={12} sm={12} xs={12}>
           <div className='dasboard-event-new__top-bar'>
-            <span className='dasboard-event-new__top-bar-icon'><CloseIcon onClick={this.redirectToDashboardPage} /></span>
+            <span className='dasboard-event-new__top-bar-icon'><Close onClick={this.redirectToDashboardPage} /></span>
             <span className='dasboard-event-new__top-bar-text'>Close</span>
           </div>
           <div className='dasboard-event-new__container'>

@@ -1,7 +1,7 @@
 import React from 'react'
 import Avatar from 'material-ui/Avatar'
-import DoneIcon from 'material-ui-icons/done'
-import Add from 'material-ui-icons/add'
+import {Done} from 'material-ui-icons'
+import {Add} from 'material-ui-icons'
 import { withStyles } from 'material-ui/styles'
 
 const styles = {
@@ -28,7 +28,7 @@ const CustomCircle = props => {
 
   if (color && color === 'greenCircle') {
     style = classes.greenCircle
-    icon = <DoneIcon />
+    icon = <Done />
   } else {
     icon = <Add />
     style = classes.blackCircle
