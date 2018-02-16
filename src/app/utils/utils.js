@@ -34,9 +34,16 @@ const fieldIsValid = (field, value, type) => {
         valid['message'] = 'please fill in a time like 13:00'
       }
       break
+    case 'email':
+      let reEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
+      if (!value.match(reEmail)) {
+        valid['valid'] = false
+        valid[field] = true
+        valid['message'] = 'fill in a valid email'
+      }
+      break
     default:
       if (String(value).length === 0) {
-        console.log('went here')
         valid['valid'] = false
         valid[field] = true
         valid['message'] = 'please fill in the information'
@@ -50,7 +57,7 @@ const fieldsAreValid = (fields, errors) => {
   let valid = true
 
   for (let field in fields) {
-    if (String(fields[field]).length === 0 || errors[field]) {
+    if (String(fields[field]).length === 0 || errors[field].error) {
       valid = false
       break
     }
