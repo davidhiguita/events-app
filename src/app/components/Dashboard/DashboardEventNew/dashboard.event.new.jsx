@@ -27,7 +27,7 @@ class DashboardEventNew extends Component {
     if (tokenExpired) {
       // dispatch this to show up the error in login page
       loginFailure('The session has expired, please login')
-      history.push(`/dashboard`)
+      history.push(`/login`)
     }
 
     return (

@@ -46,7 +46,14 @@ class DashboardEventNewForm extends Component {
 
   onClickCreateEventBtn () {
     const { createEvent, eventFailure } = this.props
-    const fieldsValid = utils.fieldsAreValid(this.state, this.state.errors)
+    const fieldsToCheck = {
+      'capacity': this.state.capacity,
+      'time': this.state.time,
+      'title': this.state.title,
+      'description': this.state.description,
+      'date': this.state.date
+    }
+    const fieldsValid = utils.fieldsAreValid(fieldsToCheck, this.state.errors)
 
     if (fieldsValid) {
       let currentDate = new Date()
