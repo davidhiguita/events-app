@@ -1,6 +1,5 @@
 // react stuff
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 // redux stuff
 import { connect } from 'react-redux'
 import dashboardActions from 'reduxConfig/actions/dashboard'

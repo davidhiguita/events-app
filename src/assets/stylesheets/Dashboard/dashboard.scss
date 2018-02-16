@@ -25,7 +25,13 @@
 
   .dashboard-event {
     margin: 10px;
+
+    &__description {
+      min-height: 60px;
+    }
   }
+
+
 
   &__menu {
     display: flex;
@@ -89,13 +95,18 @@
     and (min-device-width: 360px)
     and (max-device-width: 667px)
     and (-webkit-min-device-pixel-ratio: 2){
+
+      &__container {
+        width: 100%;
+        margin: 0
+      }
+
       &__events {
         flex-direction: column;
       }
       .dashboard-event {
         max-width: 390px;
         padding: 30px;
-        height: 236px;
         margin: 20px 0 0 0;
       }
     }
