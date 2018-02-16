@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "webpack",
 		"dev": "webpack-dev-server -d --hot --config webpack.config.js --watch",
-		"start": "npm run clean && npm run production &&  node ./bin/server.js",
+		"start": "npm run clean && npm run production &&  pm2 start ./bin/server.js --watch",
 		"clean": "rm -rf ./public/output.js && rm -rf ./public/styles.css > /dev/null",
 		"production": "NODE_ENV=production webpack"
 	},
@@ -37,6 +37,7 @@
 		"history": "^4.7.2",
 		"material-ui": "^1.0.0-beta.32",
 		"material-ui-icons": "^1.0.0-beta.17",
+		"pm2": "^2.9.3",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
 		"react-redux": "^5.0.6",
