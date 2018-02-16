@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import signUpActions from 'reduxConfig/actions/signUp'
 import SignUpForm from 'components/signup/signup.form/signup.form'
 
-class Login extends Component {
+class SignUp extends Component {
   render () {
     return (
       <div className='container'>
@@ -24,4 +24,4 @@ export default connect(
     signUp: signUpActions.signUp,
     signUpFailure: signUpActions.signUpFailure
   }
-)(Login)
+)(SignUp)
