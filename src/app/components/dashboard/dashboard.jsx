@@ -7,7 +7,7 @@ import dashboardActions from 'reduxConfig/actions/dashboard'
 // material ui
 import Grid from 'material-ui/Grid'
 // components
-import DashboardEvent from 'components/Dashboard/DashboardEvent/dashboard.event'
+import DashboardEvent from 'components/dashboard/dashboard.event/dashboard.event'
 import CustomCircle from 'components/custom.circle/custom.circle'
 import ProfileIcon from 'components/ProfileIcon/ProfileIcon'
 

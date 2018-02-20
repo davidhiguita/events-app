@@ -4,8 +4,8 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import dashboardActions from 'reduxConfig/actions/dashboard'
 // components
-import AttendeeCircle from 'components/Dashboard/DashboardEventDetail/AttendeeCircle/attendee.circle'
-import DashBoardEventDetailForm from 'components/Dashboard/DashboardEventDetail/DashBoardEventDetailForm/dashboard.event.detail.form'
+import AttendeeCircle from 'components/dashboard/dashboard.eventDetail/attendee.circle/attendee.circle'
+import DashBoardEventDetailForm from 'components/dashboard/dashboard.event.detail/dashboard.event.detailForm/dashboard.event.detail.form'
 
 class DashboardEventDetail extends Component {
   constructor (props) {

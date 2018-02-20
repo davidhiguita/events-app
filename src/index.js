@@ -12,9 +12,9 @@ import { routerReducer, routerMiddleware } from 'react-router-redux'
 import Login from 'components/Login/Login'
 import SignUp from 'components/signup/signup'
 import Dashboard from 'components/dashboard/dashboard'
-import DashboardEventDetail from 'components/Dashboard/DashboardEventDetail/dashboard.event.detail'
-import DashboardEventNew from 'components/Dashboard/DashboardEventNew/dashboard.event.new'
-import DashboardEventEdit from 'components/Dashboard/dashboard.event.edit/dashboard.event.edit'
+import DashboardEventDetail from 'components/dashboard/dashboard.event.edit/dashboard.event.edit.jsx'
+import DashboardEventNew from 'components/dashboard/dashboard.event.new/dashboard.event.new'
+import DashboardEventEdit from 'components/dashboard/dashboard.event.edit/dashboard.event.edit'
 
 import thunkMiddleware from 'redux-thunk'
 

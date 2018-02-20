@@ -8,7 +8,7 @@ import loginActions from 'reduxConfig/actions/login'
 import Grid from 'material-ui/Grid'
 import {Close} from 'material-ui-icons'
 // components
-import DashboardEventNewForm from 'components/Dashboard/DashboardEventNew/DashboardEventNewForm/dashboard.event.new.form'
+import DashboardEventNewForm from 'components/dashboard/dashboard.event.new/dashboard.event.new.form/dashboard.event.new.form'
 
 class DashboardEventNew extends Component {
   constructor (props) {
