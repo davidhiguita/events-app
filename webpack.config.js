@@ -6,7 +6,8 @@ const OptimizeCssAssets = require('optimize-css-assets-webpack-plugin')
 let config = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, './public'),
+    path: path.resolve(__dirname, '/public'),
+    publicPath: 'public/',
     filename: 'output.js'
   },
   resolve: {
@@ -82,7 +83,21 @@ module.exports = config
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.plugins.push(
-    new UglifyJsPlugin(),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          unused: true,
+          dead_code: true, // big one--strip code that will never execute
+          warnings: false, // good for prod apps so users can't peek behind curtain
+          drop_debugger: true,
+          conditionals: true,
+          evaluate: true,
+          drop_console: true, // strips console statements
+          sequences: true,
+          booleans: true
+        }
+      }
+    }),
     new OptimizeCssAssets()
   )
 }
