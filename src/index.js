@@ -1,15 +1,15 @@
 // import react dependencies
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route } from 'react-router-dom'
 
 // Redux stuff
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import {createBrowserHistory} from 'history'
+import { createBrowserHistory } from 'history'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 // main app component
-import Login from 'components/Login/Login'
+import Login from 'components/login/login'
 import SignUp from 'components/signup/signup'
 import Dashboard from 'components/dashboard/dashboard'
 import DashboardEventDetail from 'components/dashboard/dashboard.event.edit/dashboard.event.edit.jsx'
@@ -46,7 +46,7 @@ const store = createStore(
 )
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <div>
         <Route exact path='/' component={Login} />
