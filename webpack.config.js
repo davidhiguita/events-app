@@ -6,7 +6,7 @@ const OptimizeCssAssets = require('optimize-css-assets-webpack-plugin')
 let config = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, '/public'),
+    path: path.join(__dirname, '/public'),
     publicPath: 'public/',
     filename: 'output.js'
   },
