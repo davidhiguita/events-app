@@ -4,7 +4,6 @@ import { Link, Redirect } from 'react-router-dom'
 // material ui components
 import TextField from 'material-ui/TextField/TextField'
 import withStyles from 'material-ui/styles/withStyles'
-import Grid from 'material-ui/Grid'
 import FormControl from 'material-ui/Form/FormControl'
 import Input from 'material-ui/Input'
 import InputLabel from 'material-ui/Input/InputLabel'
@@ -14,6 +13,8 @@ import Visibility from 'material-ui-icons/Visibility'
 import VisibilityOff from 'material-ui-icons/VisibilityOff'
 // components
 import CustomButton from 'components/custom.button/custom.button'
+// start wars img
+import startWars from 'images/starWars.png'
 
 const styles = theme => ({
   textField: {
@@ -91,69 +92,65 @@ class LoginForm extends Component {
       )
     }
     return (
-      <Grid container className='login-form' spacing={24}>
-        <Grid item md={3} sm={1} className='login-form__left-column'>
-          <div className='login-form__left-column-bg-gray'>
-            <div className='login-form__left-column-text'>
-              <div>"Great, kid Don't get cocky."</div>
-              <div className='login-form__left-column-text--green'>-</div>
-              <div>Han solo</div>
-            </div>
+      <div container className='login-form'>
+        <div className='login-form__left-column'>
+          <div className='login-form__left-column-text'>
+            <div>"Great, kid Don't get cocky."</div>
+            <div className='login-form__left-column-text--green'>-</div>
+            <div>Han solo</div>
           </div>
-        </Grid>
-        <Grid item md={9} sm={11} className='login-form__right-column'>
-          <div>
-            <div className='login-form__right-column-signup-text'>
-              <Link to='/signUp'>Don't have account? SIGN UP </Link>
-            </div>
-            <div className='login-form__right-column-form-fields'>
-              <form>
-                <div>
-                  <div>Sign in to Eventio.</div>
-                  {fillInText}
-                </div>
-                <div>
-                  <TextField
-                    error={error}
-                    id='email'
-                    label='Email'
+        </div>
+        <div className='login-form__right-column'>
+          <div className='login-form__right-column-signup-text'>
+            <Link to='/signUp'>Don't have account? SIGN UP </Link>
+          </div>
+          <div className='login-form__right-column-form-fields'>
+            <form>
+              <div>
+                <div>Sign in to Eventio.</div>
+                {fillInText}
+              </div>
+              <div>
+                <TextField
+                  error={error}
+                  id='email'
+                  label='Email'
+                  className={classes.textField}
+                  defaultValue='Email'
+                  value={this.state.email}
+                  onChange={event => { this.handleChange('email', event) }}
+                  margin='normal'
+                />
+              </div>
+              <div>
+                <FormControl className={classes.formControl} error={error} margin='normal'>
+                  <InputLabel htmlFor='password'>Password</InputLabel>
+                  <Input
                     className={classes.textField}
-                    defaultValue='Email'
-                    value={this.state.email}
-                    onChange={event => { this.handleChange('email', event) }}
-                    margin='normal'
+                    id='adornment-password'
+                    type={this.state.showPassword ? 'text' : 'password'}
+                    value={this.state.password}
+                    onChange={event => this.handleChange('password', event)}
+                    endAdornment={
+                      <InputAdornment position='end'>
+                        <IconButton
+                          onClick={this.handleClickShowPasssword}
+                          onMouseDown={event => this.handleMouseDownPassword(event)}
+                        >
+                          {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
                   />
-                </div>
-                <div>
-                  <FormControl className={classes.formControl} error={error} margin='normal'>
-                    <InputLabel htmlFor='password'>Password</InputLabel>
-                    <Input
-                      className={classes.textField}
-                      id='adornment-password'
-                      type={this.state.showPassword ? 'text' : 'password'}
-                      value={this.state.password}
-                      onChange={event => this.handleChange('password', event)}
-                      endAdornment={
-                        <InputAdornment position='end'>
-                          <IconButton
-                            onClick={this.handleClickShowPasssword}
-                            onMouseDown={event => this.handleMouseDownPassword(event)}
-                          >
-                            {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                    />
-                  </FormControl>
-                </div>
-                <div className='login-form__right-column-submit-btn'>
-                  <CustomButton text={'SIGN IN'} onClickHandler={this.onClickSubmitBtn} />
-                </div>
-              </form>
-            </div>
+                </FormControl>
+              </div>
+              <div className='login-form__right-column-submit-btn'>
+                <CustomButton text={'SIGN IN'} onClickHandler={this.onClickSubmitBtn} />
+              </div>
+            </form>
           </div>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     )
   }
 
