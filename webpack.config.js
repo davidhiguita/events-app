@@ -69,7 +69,10 @@ let config = {
     ]// end rules
   },
   plugins: [
-    new ExtractTextWebpackPlugin('styles.css')// call the ExtractTextWebpackPlugin constructor and name our css file
+    new ExtractTextWebpackPlugin({// call the ExtractTextWebpackPlugin constructor and name our css file
+      filename: 'styles.css',
+      allChunks: true
+    })
   ],
   devServer: {
     contentBase: path.resolve(__dirname, './public'), // A directory or URL to serve HTML content from
@@ -86,15 +89,11 @@ if (process.env.NODE_ENV === 'production') {
     new UglifyJsPlugin({
       uglifyOptions: {
         compress: {
-          unused: true,
-          dead_code: true, // big one--strip code that will never execute
-          warnings: false, // good for prod apps so users can't peek behind curtain
-          drop_debugger: true,
           conditionals: true,
-          evaluate: true,
-          drop_console: true, // strips console statements
-          sequences: true,
-          booleans: true
+          drop_console: true // strips console statements
+        },
+        output: {
+          beautify: false
         }
       }
     }),
