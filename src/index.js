@@ -46,7 +46,7 @@ const store = createStore(
 )
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <div>
         <Route exact path='/' component={Login} />
